@@ -64,8 +64,8 @@
                   <td><?php echo $result_course['course_type']; ?></td>
                   <td><?php echo $row['course_prep_date']; ?></td>
                   <td><?php echo $result_meal['meal_type']; ?></td>
-                    <td><a href="update_course.php?course_id=<?php echo $row['id'];?>"> Update</a> </td>
-                    <td><a href="recipe_view.php?course_id=<?php echo $row['id'];?>"> View</a> </td>
+                    <td><a href="update_course.php?course_id=<?php echo $row['course_id'];?>"> Update</a> </td>
+                    <td><a href="recipe_view.php?course_id=<?php echo $row['course_id'];?>"> View</a> </td>
 
                 </tr>
                 <?php  }?>

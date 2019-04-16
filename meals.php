@@ -7,7 +7,6 @@
 	<!------ content area stats here            ----->
         <?php  if (logged_in()){?>
         <h3> Welcome,  <?php echo strtoupper($_SESSION['username']);?> <hr> <?php }?></h3>
-        <h3> Our Most popular Meals</h3><hr>
 	<?php //this query will show all available courses
 		 $sql =  $dbh->prepare("SELECT * FROM meal_course");
          $sql->execute();
@@ -19,8 +18,8 @@
                 $result= $sql->fetch();
                 
         ?>
-                 <h3>Meal: <?php echo $cont=$result['course_name']; ?></h3>
-                 <h3>Type:   <?php  if($value['course_type']== 1){
+                 <h3>Meal Course: <?php echo $cont=$result['course_name']; ?></h3>
+                 <h5 class="sub-title">Course Type:   <?php  if($value['course_type']== 1){
 					echo "Starter";}
 				if($value['course_type']== 2){
 					echo "Main Course";}
@@ -30,14 +29,14 @@
 					echo "Breakfast";}
 				if($value['course_type']== 5){
 					echo "Refreshment";
-				}; ?></h3>
-                 <h3>Category:    <?php if ($value['meal_type']== 2){
+				}; ?>
+                 | Meal Type:    <?php if ($value['meal_type']== 2){
 			echo "Vegetarian";
 			}else{
 				echo "Non-vegetarian";
-                        } ?></h3>
+                        } ?></h5>
                 <p><img  class="recipe-image" src="upload/recipe-images/<?php echo $result['course_image']; ?>"></p>
-                <h3>Details:</h3> <p class="contents"> <?php echo $result['course_notes']; ?></p>
+                <h3>Course Notes:</h3> <p class="contents"> <?php echo $result['course_notes']; ?></p>
                 <p class="posted"><a href="reviews.php?cont=<?php echo $cont_id=$result['course_id'];?>">Rate & Review</a> </p>
                 <p class="reviews"> Customers Reviews</p>
                 <?php //this query will show all available reviews for specific course

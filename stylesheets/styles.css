@@ -708,7 +708,7 @@ input.formbutton {
     position: relative;
     padding-right: 30px;
     padding-bottom: 10px;
-    float:left
+    float: left
 }
 
 .customer-view {
@@ -722,19 +722,41 @@ input.formbutton {
 
 .content-area {
     min-height: 350px;
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
 }
 
-.recipe-notes{
-    height:20px; 
-    padding:20px 20px 0 0px; 
+.contents {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+}
+
+.recipe-notes {
+    height: 20px;
+    padding: 20px 20px 0 0px;
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
     /*float:left;*/
 }
-.recipe-title{
-    background-color:#eee; 
-    height:34px; 
-    padding:20px 0 0 20px
+
+.recipe-title {
+    background-color: #eee;
+    height: 34px;
+    padding: 20px 0 0 20px;
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
 }
-#top-bar li.active > a {
-	background-color: #333;
-	color: #fff;
+
+#top-bar li.active>a {
+    background-color: #333;
+    color: #fff;
+}
+
+.recipe-image-view {
+    background-color: #ffffff;
+    line-height: 24px;
+}
+
+.sub-title {
+    font-size: 13px !important;
+    font-style: initial;
+    color: #2783C0;
+    margin-top: -10px;
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
 }
