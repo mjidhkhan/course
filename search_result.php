@@ -1,31 +1,33 @@
 <?php require_once("includes/session.php"); ?>
 <?php require_once("includes/connection.php"); ?>
 <?php include("includes/header.php"); ?>
+<h3> Search Result</h3><hr>
 <?php
-    $var= htmlentities($_GET['search']);
+   $var= htmlentities($_GET['search']);
    $trimmed = trim($var);
-    if (!isset($var))
-  {
-  echo "<p>We dont seem to have a search parameter!</p>";
-  exit;
-  }
-?>
-	<!------ content area stats here            ----->
-<?php
+    if (!empty($var)){
 	//this query will show all available courses
-        $sql = $dbh->prepare("SELECT * FROM meal_course
-		                          WHERE course_name like :item
-		                          OR course_type like :item
-		                          ORDER BY  course_name");
+        $sql = $dbh->prepare("SELECT course_details.course_id,
+				course_details.course_name,
+				course_details.course_image,
+				meal_course.course_type,
+			 meal_course.meal_type
+				FROM course_details
+				LEFT join meal_course
+				ON course_details.course_id= meal_course.id
+				LEFT JOIN meal_type
+				ON meal_type.id =meal_course.meal_type
+				where course_details.course_name LIKE :item
+				ORDER BY course_details.course_name");
 	$sql->execute(array(':item'=> '%'.$trimmed.'%'));
 	$items=$sql->rowCount();
 	if ($items != 0){
 ?>
-	<h3> Result for your search: "<?php echo $trimmed;?> "</h3>
+	<h3> Looked for: "<?php echo $trimmed;?> "</h3>
 	<?php echo "<p>item(s) found : <strong style='color:red'> " . $items . " </strong></p>" ?>
 
 
-	<table>
+	<table class="table">
 		<tr>
 		   <th>Course Name</th>
 		   <th>Course Type</th>
@@ -34,24 +36,24 @@
 		</tr>
 		<tr class="clchange">
 	<?php while($row= $sql->fetch()){ ?>
-                  <td><?php echo $row['course_name']; ?></td>
-		  <td><?php if ($row['course_type']== 2){
+			<td class="result"><strong><?php echo $row['course_name']; ?></strong></td>
+		  <td><?php if ($row['meal_type']== 2){
 			echo "Vegetarian";
 			}else{
 				echo "Non-vegetarian";} ?></td>
-		  <td><?php  if($row['meal_cat_id']== 1){
-					echo "Lunch";}
-				if($row['meal_cat_id']== 2){
-					echo "Dinner";}
-				if($row['meal_cat_id']== 3){
-					echo "Desserts";}
-				if($row['meal_cat_id']== 4){
+		  <td><?php  if($row['course_type']== 1){
+					echo "Starter";}
+				if($row['course_type']== 2){
+					echo "Main Course";}
+				if($row['course_type']== 3){
+					echo "course_type";}
+				if($row['course_type']== 4){
 					echo "Breakfast";}
-				if($row['meal_cat_id']== 5){
+				if($row['course_type']== 5){
 					echo "Refreshment";}
 			    ?>
         </td>
-        <td><a href="order.php?item_id=<?php echo $row['id'];?>"> Select</a> </td>
+        <td><button class="btn btn-search" onclick="addToOrder(<?php echo $row['course_id'];?>)"> +</button> </td>
       </tr>
 	<?php };?>
 	</table>
@@ -61,7 +63,12 @@
 		echo "<p>Sorry, your search for:  &quot;<strong style='color:red'>" . $trimmed . "</strong>  &quot; returned zero results</p>";
 	    }?>
 	<!------ content area sends here            ----->
-
+	<?php
+	}else{
+	//	echo '<h3> Result for your search:'.  $trimmed.'</h3>';
+  	echo "<h3 style='color:red'>Please provide search item.</h3>";
+  
+  } ?>
          <?php include("includes/sidebar.php"); ?>
 
 	<?php include("includes/footer.php"); ?>

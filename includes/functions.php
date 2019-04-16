@@ -10,4 +10,6 @@ function redirect_to( $location = NULL ) {
 			exit;
 		}
 	}
+
+
 ?>

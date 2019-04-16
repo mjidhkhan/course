@@ -11,7 +11,7 @@
 		$sql = $dbh->prepare("SELECT * FROM course_details");
 		$sql->execute();
         ?>
-        <hr>
+
 	<?php while($result= $sql->fetch()){ ?>
                 <h3 class="recipe-title"><?php echo $result['course_name']; ?></h3>
                 <p><img  class="recipe-image" src="upload/recipe-images/<?php echo $result['course_image']; ?>"></p>
@@ -19,6 +19,12 @@
                 <p class="contents"><?php echo $result['course_notes']; ?></p>
                 <h3 class="recipe-notes">Recipe Instructions</h3>
                 <p class="contents"><?php echo $result['course_instructions']; ?></p>
+                <p class="contents">
+                        <input type="button" class="btn btn-order default" id="btn_order" onclick="addToOrder(<?php echo $result['course_id']; ?>)" value="Add to Order">
+                 </p>
+                                
+                   
+               
                 <br>
                 <hr>
         <?php }?>

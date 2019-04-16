@@ -22,8 +22,28 @@ $(document).ready(function() {
     */
 });
 
+function addToOrder(id) {
+
+    $.ajax({
+        type: "POST",
+        url: "add_order.php",
+        data: { action: 'ORDER', id: id },
+        success: function(msg) {
+            if (msg > 0) {
+                console.log(msg)
+                order = 'Items in Basket <span class="order-count">' + msg + '</span><ul>	<li><a href="orderable.php">View Basket</a> </li> </ul></li>'
+                $('#orders').empty();
+                $('#orders').append(order);
+            }
+        }
+    })
+
+}
+
+/*
 function finishAjax(id, response) {
     $('#loader').remove();
 
     $('#' + id).append(unescape(response));
 }
+*/

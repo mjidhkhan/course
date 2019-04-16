@@ -1,7 +1,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 	<head>
-		<title>menu Planning</title>
+                <title>menu Planning</title>
+               
 		<link href="stylesheets/styles.css" media="all" rel="stylesheet" type="text/css" />
 		<link href="stylesheets/form.css" media="all" rel="stylesheet" type="text/css" />
                 <link rel="stylesheet" href="stylesheets/css/ui-lightness/jquery-ui-1.7.2.custom.css" type="text/css" media="screen" charset="utf-8"/>

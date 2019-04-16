@@ -49,6 +49,14 @@
                                         <?php } ?>
                                 </ul>
                         </li>
+                        <?php if (logged_in() && isset($_SESSION['ORDERS']) ){?>
+                        <li class="second" id="orders">
+                            Items in Basket
+                                <ul>
+                                    <li><a href="orderable.php">View Basket </a></li> 
+                                </ul>
+                        </li>
+                        <?php } ?>
                     </ul>
                 </li>
                         <li class="active">
