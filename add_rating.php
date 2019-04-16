@@ -16,18 +16,18 @@ if (isset($_POST['submit'])){
 
    
     while($row = $sql->fetch()){
-       echo $user_id = $row['id'];
+        $user_id = $row['id'];
     }
     // fetching content id from content tables
-    $selectTitle= $dbh->prepare("SELECT * FROM contents WHERE title =:title");
-    $selectTitle->execute(array(':title'=> $u_title));
+    $selectTitle= $dbh->prepare("SELECT * FROM course_details WHERE course_name =:course_name");
+    $selectTitle->execute(array(':course_name'=> $u_title));
     while($titles= $selectTitle->fetch()){
-         $id = $titles['id'];
+         $course_id = $titles['course_id'];
     }
 	// adding review into datbase 
-	$query 	= $dbh->prepare( "INSERT INTO review_rating (user_id, cont_id, rating, cont_title, review, date )
-                              VALUES(:user_id, :cont_id, :rating, :cont_title, :review, :date)");
-   if  ($query->execute(array(':user_id'=>$user_id, ':cont_id'=>$id, ':rating'=>$rating, ':cont_title'=>$your_title,':review'=>$review, ':date'=>$date)))
+	$query 	= $dbh->prepare( "INSERT INTO review_rating (user_id, course_id, rating, cont_title, review, date )
+                              VALUES(:user_id, :course_id, :rating, :cont_title, :review, :date)");
+   if  ($query->execute(array(':user_id'=>$user_id, ':course_id'=>$course_id, ':rating'=>$rating, ':cont_title'=>$your_title,':review'=>$review, ':date'=>$date)))
     {
                             redirect_to("meals.php");
     } else {

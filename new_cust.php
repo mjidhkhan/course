@@ -33,9 +33,9 @@ if (isset($_POST['submit'])) { // Form has been submitted
                                                     $message = "The user with Name: $username already exist."; 
                                                 }else{
                                                     //register
-                                                    $sql = $dbh->prepare("INSERT INTO users (fullname, username,email, hashed_password, status) 
-                                                            VALUES (:fullname, :username,:hashed_password, :status)");
-                                                    if($sql->execute(array(':fullname'=>$fullname, ':username'=>$username,
+                                                    $sql = $dbh->prepare("INSERT INTO users (fullname, username, email, hashed_password, status) 
+                                                            VALUES (:fullname, :username, :email, :hashed_password, :status)");
+                                                    if($sql->execute(array(':fullname'=>$fullname, ':username'=>$username, ':email'=>$email,
                                                                     ':hashed_password'=>$hashed_password, ':status'=>$status))){
                                                         redirect_to("user_login.php");
                                                         $message = "The user was successfully created.";

@@ -38,8 +38,8 @@
                         <li>
                             <p>
                             <p> <h3>Meal <?php echo $row['course_name'] ;?></h3></p>
-                                <h4><strong> <?php echo $row['fullname'] ;?> </Strong></h4>
-                            <p> <?php echo $row['date'] ;?></p>
+                                <p class="sub-title"><strong> <?php echo $row['fullname'] ;?> </Strong>
+                             |<?php echo $row['date'] ;?></p>
                             <p><img  class="recipe-image" src="upload/recipe-images/<?php echo $row['course_image']; ?>"></p>
                             <h3> <?php echo $row['cont_title'] ;?></h3>
                             
