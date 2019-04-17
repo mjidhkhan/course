@@ -38,7 +38,7 @@
                     <li><a href="view_rev_rate.php">Reviews</a></li>
                     <li><a href="#" class="active">Contact</a></li>
              <?php } ?>
-            <?php if (logged_in()&& $_SESSION['status']== 1 ||$_SESSION['status']== 2){?>
+            <?php if (logged_in()&& $_SESSION['status']== 1 || logged_in()&& $_SESSION['status']== 2){?>
                     <li><a href="index_staff.php">Dashboard</a></li>
                     <li><a href="index.php">Live View</a></li>
             <?php } ?>
