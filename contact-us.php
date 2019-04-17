@@ -4,15 +4,13 @@
 <?php //confirm_logged_in();  ?>
 
 <?php include("includes/header.php"); ?>
-    <h3 class="sidebar-title second">Contact Us </h3>
-    <div id="content">
-        <div class="page">
-            <div class="contents"></div>
-        </div>
+   
+    <div id="contents">
+     
         <table >
             <tr>
 		<td>
-			<h3>Your Query Here...</h3>
+			<h3 class="sidebar-title">Contact Us</h3>
                         <?php if (!empty($message)){ echo "<p class=\"message\">" . $message . "</p>";} ?>
 			<form action="new_staff.php" method="post">
 			<table>
