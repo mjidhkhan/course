@@ -31,7 +31,8 @@ function addToOrder(id) {
         success: function(msg) {
             if (msg > 0) {
                 console.log(msg)
-                order = 'Items in Basket <span class="order-count">' + msg + '</span><ul>	<li><a href="orderable.php">View Basket</a> </li> </ul></li>'
+                order = '<p class="sidebar-title">Basket  <span class="order-count">' + msg + '</span></p><ul> <li><a href="orderable.php">View Basket </a></li>'+ 
+                '</ul>'
                 $('#orders').empty();
                 $('#orders').append(order);
             } else {

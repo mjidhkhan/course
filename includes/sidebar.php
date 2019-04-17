@@ -6,15 +6,21 @@
                         <li class="second">
                             <p class="sidebar-title">Main</p>
                                 <ul>
-                                        <?php if (logged_in()&& $_SESSION['status']== 1){?>
+                                        <?php if (logged_in() && $_SESSION['status'] == 1) {
+    ?>
                                     <li><a href="index_staff.php">Staff Home</a></li>
-                                        <?php }?>
-                                        <?php if (logged_in()&& $_SESSION['status']== 2){?>
+                                        <?php
+}?>
+                                        <?php if (logged_in() && $_SESSION['status'] == 2) {
+        ?>
                                     <li><a href="index_cust.php">Home</a></li>
-                                         <?php }?>
-                                         <?php if (!logged_in()){?>
+                                         <?php
+    }?>
+                                         <?php if (!logged_in()) {
+        ?>
                                     <li><a href="index.php">Home</a></li>
-                                        <?php }?>
+                                        <?php
+    }?>
                                 </ul>
                         </li>
                         <li class="second">
@@ -36,26 +42,36 @@
                         <li class="second">
                         <p class="sidebar-title">Customers</p>
                                 <ul>
-                                    <?php if (logged_in()){?>
-                                    <li><a href="order.php">Order</a></li>
-                                        <?php }else{ ?>
+                                    <?php if (logged_in()) {
+        ?>
+                                    <li><a href="order.php">View Order</a></li>
+                                        <?php
+    } else {
+        ?>
                                     <li><a href="new_cust.php">Register</a></li>
-                                        <?php }?>
-                                        <?php if (logged_in()) {?>
+                                        <?php
+    }?>
+                                        <?php if (logged_in()) {
+        ?>
                                     <li> <a href="logout.php">Logout</a></li>
-                                        <?php }else {?>
+                                        <?php
+    } else {
+        ?>
                                     <li><a href="user_login.php">Login</a></li>
-                                        <?php } ?>
+                                        <?php
+    } ?>
                                 </ul>
                         </li>
-                        <?php if (logged_in() && isset($_SESSION['ORDERS']) ){?>
+                        <?php if (logged_in() && isset($_SESSION['ORDERS'])) {
+        ?>
                         <li class="second" id="orders">
                         <p class="sidebar-title">Basket</p>
                                 <ul>
                                     <li><a href="orderable.php">View Basket </a></li> 
                                 </ul>
                         </li>
-                        <?php } ?>
+                        <?php
+    } ?>
                    
                 </li>
                         <li class="second">
