@@ -54,13 +54,14 @@ if (isset($_POST['submit'])){
                 $sql->execute(array(':course_image'=>$fileName, ':course_id'=>$course_id)); 
     }
     /* Recipes table Update  start here */
-    $query = $dbh->prepare("UPDATE recipes  SET  item_id=:item_id , qty_used=:qty_used WHERE course_id=:course_id");          
+    $query = $dbh->prepare("UPDATE recipes  SET  item_id=:item_id , qty_used=:qty_used WHERE course_id=:course_id AND recipe_id=:recipe_id ");          
     for($i=1; $i<=4; $i++){
         $stock_qty  = 0;
         $new_qty  = 0;
-       echo $item = htmlentities($_POST['item_'.$i]).'<br>';
-       echo $qty_used = htmlentities($_POST['quantity_'.$i]).'<br>';
-        //$query->execute(array(':course_id'=>$course_id, ':item_id'=>$item , ':qty_used'=>$qty_used));
+        $recipe_id = $course_id.'.'.$i;
+       $item = htmlentities($_POST['item_'.$i]);
+       $qty_used = htmlentities($_POST['quantity_'.$i]);
+        $query->execute(array(':course_id'=>$course_id, ':recipe_id'=>$recipe_id, ':item_id'=>$item , ':qty_used'=>$qty_used));
         $select_item = $dbh->prepare("SELECT  quantity FROM `stock` WHERE id =:id ");
         $select_item->execute(array(':id'=> $item));
         $result= $select_item->fetch();
