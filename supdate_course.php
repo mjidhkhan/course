@@ -58,9 +58,9 @@ if (isset($_POST['submit'])){
     for($i=1; $i<=4; $i++){
         $stock_qty  = 0;
         $new_qty  = 0;
-        $item = htmlentities($_POST['item_'.$i]);;
-        $qty_used = htmlentities($_POST['quantity_'.$i]);
-        $query->execute(array(':course_id'=>$course_id, ':item_id'=>$item , ':qty_used'=>$qty_used));
+       echo $item = htmlentities($_POST['item_'.$i]).'<br>';
+       echo $qty_used = htmlentities($_POST['quantity_'.$i]).'<br>';
+        //$query->execute(array(':course_id'=>$course_id, ':item_id'=>$item , ':qty_used'=>$qty_used));
         $select_item = $dbh->prepare("SELECT  quantity FROM `stock` WHERE id =:id ");
         $select_item->execute(array(':id'=> $item));
         $result= $select_item->fetch();

@@ -79,34 +79,36 @@ if (isset($_POST['submit'])){
 	}
         /* Recipes table Update  start here */
 	if ($course_id> 0) { //if meal_course INSERTION successfull then update recipie table 
-            $query = $dbh->prepare("INSERT INTO recipes ( course_id, item_id , qty_used ) VALUES(:course_id, :item_id, :qty_used)");          
+            $query = $dbh->prepare("INSERT INTO recipes ( course_id, recipe_id, item_id , qty_used ) VALUES(:course_id, :recipe_id, :item_id, :qty_used)");          
          for($i=1; $i<=4; $i++){
                 $stock_qty  = 0;
                 $new_qty  = 0;
-               $item = htmlentities($_POST['item_'.$i]);;
-               $qty_used = htmlentities($_POST['quantity_'.$i]);
-               $query->execute(array(':course_id'=>$course_id, ':item_id'=>$item , ':qty_used'=>$qty_used));
+                $recipe_id = 0;
+                $recipe_id =$course_id.'.'.$i;
+                $item = htmlentities($_POST['item_'.$i]);;
+                $qty_used = htmlentities($_POST['quantity_'.$i]);
+                $query->execute(array(':course_id'=>$course_id, ':recipe_id'=>$recipe_id, ':item_id'=>$item , ':qty_used'=>$qty_used));
 
-               $select_item = $dbh->prepare("SELECT  quantity FROM `stock` WHERE id =:id ");
-               $select_item->execute(array(':id'=> $item));
+                $select_item = $dbh->prepare("SELECT  quantity FROM `stock` WHERE id =:id ");
+                $select_item->execute(array(':id'=> $item));
 
-               $result= $select_item->fetch();
+                $result= $select_item->fetch();
 
-               if($stock_qty > $qty_used){
-                $stock_qty = $result['quantity'];
-                $new_qty= $stock_qty - $qty_used;
-                $update_item = $dbh->prepare("UPDATE stock SET  quantity =:quantity WHERE id =:id");
-                $update_item->execute(array(':id'=>$item, ':quantity'=>$new_qty));
-               }else{
+                if($stock_qty > $qty_used){
+                        $stock_qty = $result['quantity'];
+                        $new_qty= $stock_qty - $qty_used;
+                        $update_item = $dbh->prepare("UPDATE stock SET  quantity =:quantity WHERE id =:id");
+                        $update_item->execute(array(':id'=>$item, ':quantity'=>$new_qty));
+                }else{
                  
-                       break;
-               }
+                       //break;
+                }
               
                
          }
          if ($course_id>0) {
                 // on Successfull UPDATE we redirect to index page
-               // redirect_to("index_staff.php");
+                redirect_to("index_staff.php");
         }else{
                 echo "<p> Recipe  creation failed.</p>";
         }
