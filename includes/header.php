@@ -29,7 +29,7 @@
                     <li><a href="view_rev_rate.php">Reviews</a></li>
                     <li><a href="#">Contact</a></li>
              <?php } ?>
-            <?php if (logged_in()&& $_SESSION['status']== 2){?>
+            <?php if (logged_in()&& $_SESSION['status']== 3){?>
                     <li><a href="index_cust.php">Home</a></li>
                     <li><a href="starters.php">Starters</a></li>
                     <li><a href="main_courses.php">Main Courses</a></li>
@@ -38,10 +38,9 @@
                     <li><a href="view_rev_rate.php">Reviews</a></li>
                     <li><a href="#" class="active">Contact</a></li>
              <?php } ?>
-            <?php if (logged_in()&& $_SESSION['status']== 1){?>
-                    <li><a href="index_staff.php">Staff</a></li>
-                    <li><a href="new_content.php">Content</a></li>
-                    <li><a href="index.php">Front End</a></li>
+            <?php if (logged_in()&& $_SESSION['status']== 1 ||$_SESSION['status']== 2){?>
+                    <li><a href="index_staff.php">Dashboard</a></li>
+                    <li><a href="index.php">Live View</a></li>
             <?php } ?>
             <?php if (logged_in()) {?>
                     <li > <a href="logout.php">Logout</a></li>

@@ -883,3 +883,13 @@ th {
     font-weight: normal;
     /*font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;*/
 }
+
+.out-stock {
+    background-color: rgb(231, 8, 8);
+    color: #fff;
+}
+
+.full-stock {
+    background-color: rgb(43, 199, 4);
+    color: #fff
+}
