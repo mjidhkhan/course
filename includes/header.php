@@ -27,7 +27,7 @@
                     <li><a href="desserts.php">Desserts</a></li>
                     <li><a href="refreshment.php">Refreshment</a></li>
                     <li><a href="view_rev_rate.php">Reviews</a></li>
-                    <li><a href="#">Contact</a></li>
+                    <li><a href="contact-us.php" class="active">Contact</a></li>
              <?php } ?>
             <?php if (logged_in()&& $_SESSION['status']== 3){?>
                     <li><a href="index_cust.php">Home</a></li>
@@ -36,7 +36,7 @@
                     <li><a href="desserts.php">Desserts</a></li>
                     <li><a href="refreshment.php">Refreshment</a></li>
                     <li><a href="view_rev_rate.php">Reviews</a></li>
-                    <li><a href="#" class="active">Contact</a></li>
+                    <li><a href="contact-us.php" class="active">Contact</a></li>
              <?php } ?>
             <?php if (logged_in()&& $_SESSION['status']== 1 || logged_in()&& $_SESSION['status']== 2){?>
                     <li><a href="index_staff.php">Dashboard</a></li>
