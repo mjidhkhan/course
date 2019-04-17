@@ -2,10 +2,9 @@
         <div id="sidebar">
             <ul id="accordion">
                 <li class="active">
-                    Menu Planning Navigation
                     <ul class="blocklist">
                         <li class="second">
-                            Main
+                            <p class="sidebar-title">Main</p>
                                 <ul>
                                         <?php if (logged_in()&& $_SESSION['status']== 1){?>
                                     <li><a href="index_staff.php">Staff Home</a></li>
@@ -19,7 +18,7 @@
                                 </ul>
                         </li>
                         <li class="second">
-                            Meals
+                        <p class="sidebar-title">Meals</p>
                                 <ul>
                                     <li><a href="meals.php">Meals</a></li>
                                     <li><a href="starters.php">Starters</a></li>
@@ -28,14 +27,14 @@
                                 </ul>
                         </li>
                         <li class="second">
-                            Categories
+                        <p class="sidebar-title">Categories</p>
                                 <ul>
                                     <li><a href="meal_veg.php">Vegetarian</a></li>
                                     <li><a href="meal_nonveg.php">None-Vegetarian</a></li>
                                 </ul>
                         </li>
                         <li class="second">
-                            Customers
+                        <p class="sidebar-title">Customers</p>
                                 <ul>
                                     <?php if (logged_in()){?>
                                     <li><a href="order.php">Order</a></li>
@@ -51,16 +50,16 @@
                         </li>
                         <?php if (logged_in() && isset($_SESSION['ORDERS']) ){?>
                         <li class="second" id="orders">
-                            Items in Basket
+                        <p class="sidebar-title">Basket</p>
                                 <ul>
                                     <li><a href="orderable.php">View Basket </a></li> 
                                 </ul>
                         </li>
                         <?php } ?>
-                    </ul>
+                   
                 </li>
-                        <li class="active">
-                            Search
+                        <li class="second">
+                        <p class="sidebar-title">Search</p> 
                                 <ul>
                                     <li class="small_inst">
                                         <form method="get" class="searchform" action="search_result.php" >   
@@ -71,4 +70,6 @@
                                     </li>
                                 </ul>
                         </li>
-            </ul>
+                </ul>
+        </ul>
+                      

@@ -10,7 +10,7 @@
          and Remaining quantity in Stock after Updating  Quantaties*/
 	$ing_1 = $_GET['a'];
         $old_qty = $_GET['?b'];
-        $sql = $dbh->prepare("SELECT * FROM `ingredients` WHERE id = :ing_one");
+        $sql = $dbh->prepare("SELECT * FROM `stock` WHERE id = :ing_one");
         $sql->execute(array(':ing_one'=>$ing_1));
         while($row = $sql->fetch()){
 		    $item_name = $row['ingredient_name'];

@@ -34,6 +34,8 @@ function addToOrder(id) {
                 order = 'Items in Basket <span class="order-count">' + msg + '</span><ul>	<li><a href="orderable.php">View Basket</a> </li> </ul></li>'
                 $('#orders').empty();
                 $('#orders').append(order);
+            } else {
+                window.location = msg
             }
         }
     })

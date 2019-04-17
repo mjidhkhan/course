@@ -21,7 +21,7 @@
     <div id="nav">
     	<ul id="top-bar">
             <?php if (!logged_in()){?>
-                    <li class="active"><a href="index.php" >Home</a></li>
+                    <li class=""><a href="index.php" >Home</a></li>
                     <li><a href="starters.php">Starters</a></li>
                     <li><a href="main_courses.php">Main Courses</a></li>
                     <li><a href="desserts.php">Desserts</a></li>

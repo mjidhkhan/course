@@ -31,6 +31,7 @@
                                         $_SESSION['user_id'] = $row['id'];
                                         $_SESSION['status'] = $row['status'];
                                         $_SESSION['username'] = $row['username'];
+                                        $_SESSION['fullname'] = $row['fullname'];
 
                                         redirect_to("index_staff.php");
                                     }

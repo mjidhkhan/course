@@ -10,7 +10,7 @@ if (isset($_POST['submit'])){
 	//adding new quantity to old
 	$new_qty = htmlentities($_POST['quantity_2']+($old_qty));
 	//updating stock
-	$query 	= $dbh->prepare("UPDATE ingredients SET quantity = :new_qty
+	$query 	= $dbh->prepare("UPDATE stock SET quantity = :new_qty
 													 WHERE id = :ing_one");
 		$query->execute(array(':new_qty' => $new_qty, ':ing_one' => $ing_1));
 		//$result = mysql_query($query);
@@ -24,7 +24,7 @@ if (isset($_POST['submit'])){
 		}
 }
 $ing_1 = $_GET['id'];
-$sql = $dbh->prepare("SELECT * FROM `ingredients` WHERE id = $ing_1");
+$sql = $dbh->prepare("SELECT * FROM `stock` WHERE id = $ing_1");
 $sql->execute(array(':ing_1'=>$ing_1));
 	while($row =$sql->fetch()){;
 		$item_name = $row['ingredient_name'];
