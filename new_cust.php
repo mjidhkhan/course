@@ -68,10 +68,10 @@ if (isset($_POST['submit'])) { // Form has been submitted
 	<table >
             <tr>
 		<td>
-			<h3>Create Your Account </h3>
+			<h3 class="page-heading">Create Your Account </h3>
                         <?php if (!empty($message)){ echo "<p class=\"message\">" . $message . "</p>";} ?>
 			<form action="new_cust.php" method="post">
-			<table>
+			<table class="bottom">
                                 <tr>
 					<td>Full name:</td>
 					<td><input type="text" name="fullname" maxlength="30" value="<?php echo $fullname; ?>" /></td>

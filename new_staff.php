@@ -72,10 +72,10 @@ if (isset($_POST['submit'])) { // Form has been submitted
 ?>
 <?php include("includes/header.php"); ?>
 	<!------ content area stats here            ----->		
-	<table >
+	<table class="bottom">
             <tr>
 		<td>
-			<h3>Create New User</h3>
+			<h3 class="page-heading">Create New User</h3>
                         <?php if (!empty($message)){ echo "<p class=\"message\">" . $message . "</p>";} ?>
 			<form action="new_staff.php" method="post">
 			<table>

@@ -59,13 +59,15 @@
 ?>
 <?php include("includes/header.php"); ?>
 	<!------ content area stats here            ----->
-	<table >
-            <tr>
-		<td>
-		    <h3>Login Area</h3>
+	<table class="bottom">
+            <tr >
+		<td >
+            <h3 class="page-heading">Login Area</h3>
+        
                     <?php if (!empty($message)){ echo "<p class=\"message\">" . $message . "</p>";} ?>
+           
 		    <form action="user_login.php" method="post">
-			<table>
+            <table>
 				<tr>
 					<td>Username:</td>
 					<td><input type="text" name="username" maxlength="30" value="<?php echo $username; ?>" /></td>
@@ -79,7 +81,8 @@
 					<td colspan="2"><input type="submit" class="formbutton" name="submit" value="Login" /></td>
 				</tr>
 			</table>
-		    </form>
+            </form>
+           
 		</td>
             </tr>
         </table>
