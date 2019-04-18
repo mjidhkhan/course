@@ -479,7 +479,6 @@ li ul {
 }
 
 #accordion li {
-    cursor: pointer;
     font-weight: bold;
     color: #015287;
     margin-bottom: 10px;

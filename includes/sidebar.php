@@ -12,7 +12,7 @@ if(isset($_SESSION['ORDERS']) && sizeof($_SESSION['ORDERS'])>0){
                   
                     <li class="second" id ="orders">
                        
-                            <p class="sidebar-title">Order Basket  <span class="order-count"><?php echo $orders; ?></span></p>
+                            <p class="sidebar-title">Order Basket  <a   href="basket.php"><span class="order-count"><?php echo $orders; ?></span></a></p>
                             <ul>
                                 <li><a href="basket.php">View Basket </a></li> 
                             </ul>
