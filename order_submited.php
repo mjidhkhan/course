@@ -4,7 +4,19 @@
 <?php include("includes/header.php"); ?>
 <?php
 
-echo '<pre>'. var_export($_SESSION, true).'</pre>';//print_r($_SESSION);
+//echo '<pre>'. var_export($_SESSION, true).'</pre>';//print_r($_SESSION);
+
+
+foreach ($_SESSION['ORDERS_DETAILS'] as $key => $data) {
+	foreach ($data as $key => $value) {
+		echo $value['course_id'].'<br>';
+		echo $value['course_type'].'<br>';
+		echo $value['meal_type'].'<br>';
+		echo $value['course_name'].'<br>';
+	}
+}
+	/*
+}
 /*
 	print_r($_SESSION);
     $id = ($_POST['course_id']);
@@ -117,3 +129,12 @@ echo '<pre>'. var_export($_SESSION, true).'</pre>';//print_r($_SESSION);
 	}
 	*/
 ?>
+	<?php  if( $_SESSION['status']== 1){
+		include("includes/staff_sidebar.php");
+}else{
+	include("includes/sidebar.php");
+}
+?>
+<?php include("includes/footer.php"); ?>
+
+

@@ -36,7 +36,9 @@
 		<tr>
            <td class=" order bottom-line right-line  ">Reservation Date</td><td class="bottom-line right-line  pending larg">20-04-2019</td>
         <tr>
-           <td class="bottom-line right-line order gray ">Order Date</td><td class=" bottom-line right-line gray ">20-04-2019</td>
+           <td class="bottom-line right-line order gray ">Order Date<span class= "req" > * </span></td><td class=" bottom-line right-line gray ">
+				<input type= "text" name="prep_date" id="date" size="20" required/>
+           </td>
         </tr>
     </table>
         </div>
@@ -87,13 +89,10 @@
                          $result_meal= $sql->fetch();
                          $full_order[]= array('course_id'=>$value['course_id'], 
                                                     'course_type'=> $result1['course_type'],
-                                                    'meal_type'=>$result1['course_type'],
+                                                    'meal_type'=>$result1['meal_type'],
                                                     'course_name'=>$value['course_name']
                                                 );
                         
-                                            
-                        
-
                          ?>
                   <td  class=" bottom-line right-line  small"><?php echo $value['course_name']; ?></td>
                   <td  class=" bottom-line right-line gray small"><?php echo $result_course['course_type']; ?></td>

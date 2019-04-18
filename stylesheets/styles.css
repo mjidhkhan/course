@@ -975,3 +975,16 @@ th {
 .bg {
     background-color: #d8d8d8;
 }
+
+td>input {
+    padding: 5px;
+    color: #333333;
+    border: 1px solid #ddd;
+}
+
+td>select {
+    padding: 5px;
+    color: #333333;
+    border: 1px solid #ddd;
+    width: 100%
+}
