@@ -3,9 +3,10 @@
 <?php require_once("includes/connection.php"); ?>
 <?php confirm_logged_in(); ?>
 <?php include("includes/header.php"); ?>
+
 	<!------ content area stats here            ----->
-        <?php  if (logged_in() && $_SESSION['status']== 2){?>
-            <h3> Welcome,  <?php echo $user = strtoupper($_SESSION['username']);?> to Rate & Review </h3>
+        <?php  if (logged_in() && $_SESSION['status']== 3){?>
+            <h3> Welcome,  <?php echo $user = strtoupper($_SESSION['fullname']);?></h3>
 	<?php //this query will show all available courses
 		$sql =  $dbh->prepare("SELECT * FROM `course_details`
                 Where course_id =:id");
@@ -14,7 +15,7 @@
                 $sql_1= $dbh->prepare("SELECT *
                             FROM users 
                             WHERE username =:username");
-                         $sql_1->execute(array(':username'=>$user));
+                         $sql_1->execute(array(':username'=>$_SESSION['username']));
                     while($row= $sql_1->fetch()){ 
         ?>
         <div class="reviews">

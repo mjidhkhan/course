@@ -1,8 +1,23 @@
+<?php 
+$orders='';
+if(isset($_SESSION['ORDERS']) && sizeof($_SESSION['ORDERS'])>0){
+   $orders = sizeof($_SESSION['ORDERS']);
+}
+?>
 </div> 
         <div id="sidebar">
             <ul id="accordion">
                 <li class="active">
                     <ul class="blocklist">
+                  
+                    <li class="second" id ="orders">
+                       
+                            <p class="sidebar-title">Order Basket  <span class="order-count"><?php echo $orders; ?></span></p>
+                            <ul>
+                                <li><a href="basket.php">View Basket </a></li> 
+                            </ul>
+                    </li>
+                    
                         <li class="second">
                         <p class="sidebar-title">Meals</p>
                                 <ul>
@@ -22,36 +37,20 @@
                         <li class="second">
                         <p class="sidebar-title">Customers</p>
                                 <ul>
-                                    <?php if (logged_in()) {
-        ?>
-                                    <li><a href="order.php">View Order</a></li>
-                                        <?php
-    } else {
-        ?>
+                                    <?php if (!logged_in()) { ?>
                                     <li><a href="new_cust.php">Register</a></li>
-                                        <?php
-    }?>
-                                        <?php if (logged_in()) {
-        ?>
+                                        <?php } ?>
+  
+                                        <?php if (logged_in()) {  ?>
                                     <li> <a href="logout.php">Logout</a></li>
-                                        <?php
-    } else {
-        ?>
+                                        <?php } else { ?>
                                     <li><a href="user_login.php">Login</a></li>
-                                        <?php
-    } ?>
+                                        <?php } ?>
                                 </ul>
                         </li>
-                        <?php if (logged_in() && isset($_SESSION['ORDERS'])) {
-        ?>
-                        <li class="second" id="orders">
-                        <p class="sidebar-title">Basket</p>
-                                <ul>
-                                    <li><a href="orderable.php">View Basket </a></li> 
-                                </ul>
-                        </li>
-                        <?php
-    } ?>
+   
+                       
+    
                    
                 </li>
                         <li class="second">

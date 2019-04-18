@@ -460,7 +460,7 @@ li ul {
 
 #content {
     float: right;
-    width: 690px;
+    width: 740px;
     margin: 0;
     padding-left: 20px;
     border-left: 1px solid #ddd;
@@ -903,4 +903,75 @@ th {
 
 .bottom {
     border-bottom: 1px solid #247ab3;
+}
+
+.order {
+    padding-bottom: 12px;
+    padding-top: 5px;
+}
+
+.pending {
+    color: #fc2802;
+}
+
+.bottom-line {
+    border-top: 1px solid#eee;
+    border-bottom: 1px solid#eee;
+}
+
+.right-line {
+    border-right: 1px solid#eee;
+    border-left: 1px solid#eee;
+}
+
+.larg {
+    font-size: 1.5rem;
+}
+
+.medium {
+    font-size: 1.0rem;
+}
+
+.small {
+    font-size: 0.8rem;
+}
+
+.column {
+    float: left;
+}
+
+.left {
+    width: 48%;
+}
+
+.right {
+    width: 49%;
+    margin-left: 20px
+}
+
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.green {
+    color: rgb(7, 151, 31);
+}
+
+.gray {
+    color: #999;
+}
+
+.pull-right {
+    float: right;
+}
+
+.order-button {
+    margin-top: 20px;
+    padding: 20px;
+}
+
+.bg {
+    background-color: #d8d8d8;
 }

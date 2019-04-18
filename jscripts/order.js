@@ -1,7 +1,5 @@
 $(document).ready(function() {
 
-    //$('#loader').hide();
-
 
     /*
     $('.parent').livequery('change', function() {
@@ -21,6 +19,7 @@ $(document).ready(function() {
     });
     */
 });
+var orders = 0
 
 function addToOrder(id) {
 
@@ -29,12 +28,13 @@ function addToOrder(id) {
         url: "add_order.php",
         data: { action: 'ORDER', id: id },
         success: function(msg) {
-            if (msg > 0) {
-                console.log(msg)
-                order = '<p class="sidebar-title">Basket  <span class="order-count">' + msg + '</span></p><ul> <li><a href="orderable.php">View Basket </a></li>'+ 
-                '</ul>'
+            orders = msg;
+            if (msg >= 1) {
+                order = '<p class="sidebar-title">Order Basket  <span class="order-count">' + orders + '</span></p><ul> <li><a href="orderable.php">View Basket </a></li>' +
+                    '</ul>'
                 $('#orders').empty();
                 $('#orders').append(order);
+                $('#orders').show();
             } else {
                 window.location = msg
             }

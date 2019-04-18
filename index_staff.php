@@ -13,7 +13,7 @@
     $sql->execute();
                 if ($row= $sql->fetch() != 0){ ?>
                     <h3>Some of Ingredients has Low Quantity in stock </h3>
-                <table>
+                <table class="table">
                     <tr>
                         <th>Ingredient</th>
                         <th>Qyantity</th>
@@ -27,14 +27,16 @@
                         <td><a href="manage_stock.php?id=<?php echo $row['id'];?>"> Update</a> </td>
                     </tr>
             <?php }?>
-                </table> <hr>
+                </table> 
+                <br><br>
 
 	<?php //this query will show all available courses
 	  $sql =  $dbh->prepare( "SELECT * FROM `course_details` ");
-	  $sql->execute();
+      $sql->execute();
+      $result = $sql->fetchAll();
         ?>
 	<h3> Available courses</h3>
-	<table>
+	<table class="table">
 		<tr>
 		   <th>Course Name</th>
 		   <th>Course Type</th>
@@ -44,10 +46,11 @@
             <th>Recipe</th>
 		</tr>
 		<tr>
-                    <?php while($row= $sql->fetch()){ ?>
+                    <?php foreach ($result as $key => $value) {
+                        ?>
                         <?php
                          $sql =  $dbh->prepare( "SELECT * FROM `meal_course` WHERE id=:id ");
-                         $sql->execute(array(':id'=>$row['course_id']));
+                         $sql->execute(array(':id'=>$value['course_id']));
                          $result= $sql->fetch();
                         
                          $sql =  $dbh->prepare( "SELECT * FROM `course_type` WHERE id=:id ");
@@ -59,13 +62,13 @@
                          $result_meal= $sql->fetch();
                          ?>
 
-                    <td><?php echo $row['course_name']; ?></td>
+                    <td><?php echo $value['course_name']; ?></td>
                    
                   <td><?php echo $result_course['course_type']; ?></td>
-                  <td><?php echo $row['course_prep_date']; ?></td>
+                  <td><?php echo $value['course_prep_date']; ?></td>
                   <td><?php echo $result_meal['meal_type']; ?></td>
-                    <td><a href="update_course.php?course_id=<?php echo $row['course_id'];?>"> Update</a> </td>
-                    <td><a href="recipe_view.php?course_id=<?php echo $row['course_id'];?>"> View</a> </td>
+                    <td><a href="update_course.php?course_id=<?php echo $value['course_id'];?>"> Update</a> </td>
+                    <td><a href="recipe_view.php?course_id=<?php echo $value['course_id'];?>"> View</a> </td>
 
                 </tr>
                 <?php  }?>

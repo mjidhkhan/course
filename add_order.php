@@ -27,11 +27,17 @@ echo 'ERROR';
 }
 
 function processOrderData($data){
+
+	
 	
 //array_push($_SESSION['ORDERS'],$data['id']);
 	$_SESSION['ORDERS'][] = $data['id'];
 	$result = sizeof($_SESSION['ORDERS']);
+	
 	echo $result;
+
+
+	
 
 	//unset($_SESSION['ORDERS'][$data['id']]);
 
