@@ -4,26 +4,6 @@
                 <li class="active">
                     <ul class="blocklist">
                         <li class="second">
-                            <p class="sidebar-title">Main</p>
-                                <ul>
-                                        <?php if (logged_in() && $_SESSION['status'] == 1) {
-    ?>
-                                    <li><a href="index_staff.php">Staff Home</a></li>
-                                        <?php
-}?>
-                                        <?php if (logged_in() && $_SESSION['status'] == 2) {
-        ?>
-                                    <li><a href="index_cust.php">Home</a></li>
-                                         <?php
-    }?>
-                                         <?php if (!logged_in()) {
-        ?>
-                                    <li><a href="index.php">Home</a></li>
-                                        <?php
-    }?>
-                                </ul>
-                        </li>
-                        <li class="second">
                         <p class="sidebar-title">Meals</p>
                                 <ul>
                                     <li><a href="meals.php">All Meals</a></li>

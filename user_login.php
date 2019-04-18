@@ -25,7 +25,7 @@
                                     // if user is staff redirect to staff index
                                     $row['status'];
 
-                                    if ($row['status'] == 1)
+                                    if ($row['status'] == 1 || $row['status'] == 2)
                                     {
                                         // $found_user = mysql_fetch_array($result);
                                         $_SESSION['user_id'] = $row['id'];
@@ -35,7 +35,7 @@
 
                                         redirect_to("index_staff.php");
                                     }
-                                    if ($row['status'] == 2)
+                                    if ($row['status'] == 3)
                                     {
                                         //$found_user = mysql_fetch_array($result);
                                         $_SESSION['user_id'] = $row['id'];

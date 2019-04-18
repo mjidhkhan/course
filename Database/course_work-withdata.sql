@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 18, 2019 at 11:30 AM
+-- Generation Time: Apr 18, 2019 at 11:36 AM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.3.3
 
@@ -323,7 +323,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `fullname`, `username`, `email`, `hashed_password`, `status`) VALUES
-(28, 'Chathurika Goonawardane', 'chathurika', 'cha@cha', '7c4a8d09ca3762af61e59520943dc26494f8941b', 2),
+(28, 'Chathurika Goonawardane', 'chathurika', 'cha@cha', '7c4a8d09ca3762af61e59520943dc26494f8941b', 3),
 (27, 'Majid H Khan', 'mhkhan', 'mhk@mhk.com', '7c4a8d09ca3762af61e59520943dc26494f8941b', 1),
 (34, 'Rashid Khan', 'rashid', 'rashid@menu.com', '7c4a8d09ca3762af61e59520943dc26494f8941b', 1),
 (35, 'Sajid Khan', 'sajid', 'sajid@mp.com', '7c4a8d09ca3762af61e59520943dc26494f8941b', 2);
