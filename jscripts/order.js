@@ -30,7 +30,7 @@ function addToOrder(id) {
         success: function(msg) {
             orders = msg;
             if (msg >= 1) {
-                order = '<p class="sidebar-title">Order Basket  <span class="order-count">' + orders + '</span></p><ul> <li><a href="orderable.php">View Basket </a></li>' +
+                order = '<p class="sidebar-title">Order Basket  <span class="order-count">' + orders + '</span></p><ul> <li><a href="basket.php">View Basket </a></li>' +
                     '</ul>'
                 $('#orders').empty();
                 $('#orders').append(order);
@@ -41,6 +41,10 @@ function addToOrder(id) {
         }
     })
 
+}
+
+function placeOrder(url) {
+    window.location = url
 }
 
 /*

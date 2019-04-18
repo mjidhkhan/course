@@ -4,6 +4,7 @@
 <?php include("includes/header.php"); ?>
 <?php
 
+echo '<pre>'. var_export($_SESSION, true).'</pre>';//print_r($_SESSION);
 /*
 	print_r($_SESSION);
     $id = ($_POST['course_id']);
@@ -80,6 +81,9 @@
 	//	redirect_to("index.php");
 
 */
+
+
+/* COMMENTED FOR TEST
 	if( !empty($_POST)){
 		$customer_id = $_SESSION['user_id'];
 		$meal_type = ($_POST['meal_type']);
@@ -95,7 +99,7 @@
 		while ($row = $sql->fetch()){
 			$fullname= $row['fullname'];
 		}
-		/*  INSERting DATA to orders Table */
+	
 		$sql = $dbh->prepare("INSERT INTO orders ( customer_id, order_date,  booking_date, servings, order_status)
 							VALUES (:customer_id, :order_date, :booking_date, :servings, :order_status)");
 		$sql->execute(array(':customer_id'=>$customer_id,':order_date'=>date('Y-m-d'), ':booking_date'=>$booking_date, ':servings'=>$servings, ':order_status'=>$order_status));
@@ -111,4 +115,5 @@
 	}else{
 	
 	}
+	*/
 ?>

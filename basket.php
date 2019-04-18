@@ -67,33 +67,58 @@
 		<tr>
 
 
-                    <?php foreach ($result as $key => $value) {
+                    <?php
+                    unset($_SESSION['ORDERS_DETAILS']);
+                  
+                    
+                    foreach ($result as $key => $value) {
                         ?>
                         <?php
                          $sql =  $dbh->prepare( "SELECT * FROM `meal_course` WHERE id=:id ");
                          $sql->execute(array(':id'=>$value['course_id']));
-                         $result= $sql->fetch();
+                         $result1= $sql->fetch();
                         
                          $sql =  $dbh->prepare( "SELECT * FROM `course_type` WHERE id=:id ");
-                         $sql->execute(array(':id'=>$result['course_type']));
+                         $sql->execute(array(':id'=>$result1['course_type']));
                          $result_course= $sql->fetch();
 
                          $sql =  $dbh->prepare( "SELECT * FROM `meal_type` WHERE id=:id ");
-                         $sql->execute(array(':id'=>$result['meal_type']));
+                         $sql->execute(array(':id'=>$result1['meal_type']));
                          $result_meal= $sql->fetch();
+                         $full_order[]= array('course_id'=>$value['course_id'], 
+                                                    'course_type'=> $result1['course_type'],
+                                                    'meal_type'=>$result1['course_type'],
+                                                    'course_name'=>$value['course_name']
+                                                );
+                        
+                                            
+                        
+
                          ?>
                   <td  class=" bottom-line right-line  small"><?php echo $value['course_name']; ?></td>
                   <td  class=" bottom-line right-line gray small"><?php echo $result_course['course_type']; ?></td>
                   <td  class=" bottom-line right-line gray small"><?php echo $result_meal['meal_type']; ?></td>
-                  <td  class=" bottom-line right-line  small"> 1 </td>
+                  <td  class=" bottom-line right-line  small">
+                  <select id="course_<?php echo $value['course_id'] ?>" name="item_<?php echo $value['course_id'] ?>" >
+                  <?php for($idx =1; $idx<=10; $idx ++){ ?> 
+                        <option value="<?php echo $idx; ?>"><?php echo $idx; ?></option>
+                    <?php }?>
+				 </select>
+                
+                </td>
                    
 
                 </tr>
-                <?php  }?>
+                <?php  }
+
+
+                $_SESSION['ORDERS_DETAILS'][] =  $full_order;
+                
+                ?>
         </table>
 
         <div class="order-button ">
-        <input type="submit" class="formbutton pull-right" name="submit" value="Submit Order" />
+        <input type="submit" class="formbutton pull-right" onclick="placeOrder('order_submited.php')" name="submit" value="Submit Order" />
         <br>
         <br>
 
