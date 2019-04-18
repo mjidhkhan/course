@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 18, 2019 at 11:06 AM
+-- Generation Time: Apr 18, 2019 at 11:30 AM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.3.3
 
@@ -100,8 +100,8 @@ INSERT INTO `meal_course` (`id`, `course_type`, `meal_type`) VALUES
 (45, 1, 1),
 (46, 1, 2),
 (47, 2, 2),
-(48, 3, 2),
-(49, 5, 2);
+(48, 3, 3),
+(49, 5, 4);
 
 -- --------------------------------------------------------
 
@@ -121,7 +121,9 @@ CREATE TABLE `meal_type` (
 
 INSERT INTO `meal_type` (`id`, `meal_type`) VALUES
 (1, 'Vegan'),
-(2, 'Others');
+(2, 'Non- Vegetarian'),
+(3, 'Desserts'),
+(4, 'Refreshments');
 
 -- --------------------------------------------------------
 
@@ -419,7 +421,7 @@ ALTER TABLE `meal_course`
 -- AUTO_INCREMENT for table `meal_type`
 --
 ALTER TABLE `meal_type`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `orders`

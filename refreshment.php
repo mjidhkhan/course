@@ -17,7 +17,7 @@
         <?php //this query will show all available Starters.
 
         $sql = $dbh->prepare('SELECT * FROM `meal_course`
-        Where meal_type = 4 AND course_type = 4');
+        Where meal_type = 4 AND course_type = 5');
         $sql->execute();
         $row = $sql->fetchAll();
         foreach ($row as $key => $value) {

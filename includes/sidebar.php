@@ -26,10 +26,10 @@
                         <li class="second">
                         <p class="sidebar-title">Meals</p>
                                 <ul>
-                                    <li><a href="meals.php">Meals</a></li>
+                                    <li><a href="meals.php">All Meals</a></li>
                                     <li><a href="starters.php">Starters</a></li>
                                     <li><a href="main_courses.php">Main Courses</a></li>
-                                    <li><a href="desserts.php">Desserts</a></li>
+                                   
                                 </ul>
                         </li>
                         <li class="second">
