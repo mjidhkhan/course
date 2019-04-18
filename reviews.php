@@ -2,7 +2,10 @@
 <?php require_once("includes/functions.php"); ?>
 <?php require_once("includes/connection.php"); ?>
 <?php confirm_logged_in(); ?>
-<?php include("includes/header.php"); ?>
+<?php include("includes/header.php");
+
+
+?>
 
 	<!------ content area stats here            ----->
         <?php  if (logged_in() && $_SESSION['status']== 3){?>
@@ -53,6 +56,7 @@
             </tr>
 	    <tr>
                 <td></td>
+                <input type="text"  readonly="true" hidden class="readonly" name="course_id"  value="<?php echo $_GET['cont']?>" id="title" size="50" />
                 <td><input type="submit"  class="searchsubmit formbutton"  name="submit" value="Submit" />
                 <input type="reset" class="searchsubmit formbutton" name="reset" value="Reset" /></td>
             </tr>

@@ -4,6 +4,7 @@
  require_once("includes/connection.php"); 
 
 if (isset($_POST['submit'])){
+	echo $course_id = $_POST['course_id'];
 	$u_title = $_POST['title'];
 	$username =$_SESSION['username'];
     $rating = $_POST['rating'];
@@ -17,12 +18,16 @@ if (isset($_POST['submit'])){
    
     while($row = $sql->fetch()){
         $user_id = $row['id'];
+    
     }
     // fetching content id from content tables
     $selectTitle= $dbh->prepare("SELECT * FROM course_details WHERE course_name =:course_name");
     $selectTitle->execute(array(':course_name'=> $u_title));
-    while($titles= $selectTitle->fetch()){
-         $course_id = $titles['course_id'];
+    $titles= $selectTitle->fetch();
+    print_r($titles);
+    while($titles){
+       
+        $course_id = $titles['course_id'];
     }
 	// adding review into datbase 
 	$query 	= $dbh->prepare( "INSERT INTO review_rating (user_id, course_id, rating, cont_title, review, date )
