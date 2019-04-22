@@ -1,4 +1,15 @@
+@import url('https://fonts.googleapis.com/css?family=Lato|Montserrat|Oswald|Playfair+Display|Roboto');
 body {
+    font-family: 'Lato',
+    sans-serif;
+    font-family: 'Roboto',
+    sans-serif;
+    font-family: 'Montserrat',
+    sans-serif;
+    font-family: 'Oswald',
+    sans-serif;
+    font-family: 'Playfair Display',
+    serif;
     background: #E7E7E7;
     margin: 0;
     padding: 0;
@@ -185,7 +196,7 @@ td {
 
 th {
     color: #fff;
-    background: #2783C0 url('../images/headerbg.jpg') repeat-x scroll bottom left;
+    background: #2783C0; /*url('../images/headerbg.jpg') repeat-x scroll bottom left; */
 }
 
 td {
@@ -210,7 +221,8 @@ code {
 }
 
 blockquote {
-    border-left: 5px solid #2B84C0;
+    border-left: 5px solid rgb(180, 184, 180);
+     min-height: 5%;
 }
 
 blockquote p {
@@ -218,7 +230,8 @@ blockquote p {
     font-family: Verdana, Arial, Helvetica, sans-serif;
     margin: 0;
     color: #666;
-    height: 1%;
+    padding:20px;
+   
 }
 
 p {
@@ -633,6 +646,7 @@ li ul {
     Padding-top: 20px;
     Padding-bottom: 20px;
     background: #666666;
+    margin-top:0px;
 }
 
 .footer-content {
@@ -987,3 +1001,61 @@ td>select {
     border: 1px solid #ddd;
     width: 100%
 }
+
+.error{
+    font-family: 'Lato',
+    sans-serif;
+    color:rgb(212, 9, 9);
+}
+.success {
+    font-family: 'Lato',
+    sans-serif;
+    color:rgb(4, 153, 36);
+}
+.bg-success {
+    font-family: 'Lato',
+    sans-serif;
+    background-color:rgb(4, 153, 36);
+    color:#FFF;
+}
+.bg-error {
+    font-family: 'Lato',
+    sans-serif;
+    background-color:rgb(212, 9, 9);
+    color:#FFF;
+    border: 1px silod rgb(212, 9, 9) !important;
+}
+ .required {
+    background-color:rgb(241, 177, 177);
+    border: 1px silod rgb(212, 9, 9);
+}
+.booking{
+    font-family: 'Lato',
+    sans-serif;
+    background-color:#3F51B5;
+    border: 1px silod#3F51B5 !important; 
+    color:#FFF;
+}
+
+
+.del:hover{
+cursor: pointer;
+text-decoration: underline;
+}
+.details-link:hover {
+    cursor: pointer;
+    text-decoration: underline;
+    
+}
+.details-link{
+    
+    color:#2783c0;
+}
+
+.bg-default{
+    background-color: rgba(238, 238, 238, 0.514);
+}
+.bg-pending{
+    background-color: rgb(230, 142, 142);
+}
+

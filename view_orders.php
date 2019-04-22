@@ -1,45 +1,61 @@
-<?php require_once("includes/session.php"); ?>
-<?php require_once("includes/connection.php"); ?>
-<?php require_once("includes/functions.php"); ?>
+<?php require_once 'includes/session.php'; ?>
+<?php require_once 'includes/connection.php'; ?>
+<?php require_once 'includes/functions.php'; ?>
 <?php
-	
-	
-    $query=$dbh->prepare("SELECT * FROM users WHERE username =:username ");
-	$query->execute(array(':username'=>$_SESSION['username']));
-	//$result = mysql_query($query);
-	while ($row = $query->fetch()){
-			$fullname= $row['fullname'];
-			
-	    }
-	    
-    $sql=$dbh->prepare(" SELECT * FROM orders where customer_id =:customer_id ");
-		$sql->execute(array(':customer_id'=>$_SESSION['user_id']));
-		$result = $sql->fetchAll();
 
-		print_r($_SESSION);
+$query = $dbh->prepare('SELECT orders.id, orders.customer_id,
+                        orders.order_date, 
+                        orders.booking_date,users.fullname 
+FROM orders
+INNER JOIN users 
+ON users.id = orders.customer_id');
+$query->execute();
+$allOrders = $query->fetchAll();
+
 ?>
-<?php include("includes/header.php"); ?>
+
+<?php include 'includes/header.php'; ?>
 	<!------ content area stats here            ----->
-<div id="content-head"><h3>Order details</h3></div>
-    <div id="content">
-	<form action="order_info.php" method="post">
+<div id="content-head">
+		<?php  if (logged_in()) {
+    ?>
+		<h3> Welcome,  <?php echo strtoupper($_SESSION['fullname']);
+}?> </h3>
+	</div>
+	<div id="content">   
 	    <table>
 		<tr>
-		    <?php while ($row = mysql_fetch_array(mysql_query($sql))){ ?>
-		    <td>Customer name: </td>
-		  <td> <?php echo $row['customer_name'];
-		} ?></td>
-		    
+		   <th>Customer</th>
+		   <th>Order Date</th>
+		   <th class=" booking medium">Booking Date</th>
+		   <th class="">View</th>
+		   
+		
 		</tr>
+		<?php
+        foreach ($allOrders as $key => $value) {
+            //print_r($value);
+            //foreach ($data as $key => $value) {?>
 		<tr>
-		    <td></td>
-		</tr>
-	    </table>
-	</form>
+		<td class=" bottom-line right-line  small"><?php echo $value['fullname']; ?></td>
+		<td class=" bottom-line right-line  gray small"><?php echo $value['order_date']; ?></td>
+		<td class=" error bottom-line right-line  medium "><?php echo $value['booking_date']; ?></td>
+        <td class=" success bottom-line right-line  small details-link"> <a href="order_details.php?order_id=<?php echo $value['id']; ?>&cust_id=<?php echo $value['customer_id']; ?>">Details</a></td>
+        </tr>
+        <tr>
+
+        </tr>
+		<?php
+           // }
+        } ?>
+
+        </table> 
+
     </div>
-	<!------ content area sends here            ----->	
-         <?php include("includes/sidebar.php"); ?>       
-	<?php include("includes/footer.php"); ?>
-	
-	
-        
+	<?php  if ($_SESSION['status'] == 1 || $_SESSION['status'] == 2) {
+            include 'includes/staff_sidebar.php';
+        } else {
+            include 'includes/sidebar.php';
+        }
+        ?>
+	<?php include 'includes/footer.php'; ?>

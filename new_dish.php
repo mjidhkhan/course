@@ -1,12 +1,12 @@
-<?php require_once("includes/session.php"); ?>
-<?php require_once("includes/connection.php"); ?>
-<?php require_once("includes/functions.php"); ?>
+<?php require_once 'includes/session.php'; ?>
+<?php require_once 'includes/connection.php'; ?>
+<?php require_once 'includes/functions.php'; ?>
 <?php confirm_logged_in(); ?>
-<?php include("includes/header.php"); ?>
+<?php include 'includes/header.php'; ?>
 
 
 <!------ content area stats here----->
-<h3> Welcome , <?php echo $_SESSION['username'];?> </h3><p>
+<h3> Welcome , <?php echo $_SESSION['username']; ?> </h3><p>
 	<div><h3> Prepare Meal Courses</h3>
                 <p class="small_inst"> <strong> All fields must be filled.</strong></p>
 		<p class="link"> <a  href="rcp_plane.php">Check Stock Availability</a>
@@ -18,24 +18,26 @@
 				<label>Meal Type <span class= "req" > * </span></label>
 				<select id="meal_type" name="meal_type" >
 				    <?php
-				    $sql =$dbh->prepare( "SELECT * FROM `meal_type` ");
-				      $sql->execute();
-				    while($row= $sql->fetch()){
-				    ?>
-				    <option value="<?php echo $row['id'];?>"><?php  echo $row ['meal_type'];?></option>
-				    <?php }?>
+                    $sql = $dbh->prepare('SELECT * FROM `meal_type` ');
+                      $sql->execute();
+                    while ($row = $sql->fetch()) {
+                        ?>
+				    <option value="<?php echo $row['id']; ?>"><?php  echo $row['meal_type']; ?></option>
+				    <?php
+                    }?>
 				</select>
 			</div>
 			<div>
 				<label>Course Type <span class= "req" > * </span> </label>
 				<select id="course_type" name="course_type" >
 				    <?php
-				    $sql =$dbh->prepare( "SELECT * FROM `course_type` ");
-				      $sql->execute();
-				    while($row= $sql->fetch()){
-				    ?>
-				    <option value="<?php echo $row['id'];?>"><?php  echo $row ['course_type'];?></option>
-				    <?php }?>
+                    $sql = $dbh->prepare('SELECT * FROM `course_type` ');
+                      $sql->execute();
+                    while ($row = $sql->fetch()) {
+                        ?>
+				    <option value="<?php echo $row['id']; ?>"><?php  echo $row['course_type']; ?></option>
+				    <?php
+                    }?>
 				</select>
 			</div>
 			<div>
@@ -51,44 +53,49 @@
 				<div><span class="small_inst">Minimum four Ingredients Required </span></div>
 				<legend>Recipe Ingredients</legend>
 				<select id="id_1" name="item_1" >
-				<?php $sql = $dbh->prepare("SELECT * FROM `stock` ");
-					      $sql->execute();
-					    while($row= $sql->fetch()){?>
-					    <option value="<?php echo $row['id'];?>"><?php  echo $row ['ingredient_name'];?></option>
-					    <?php }?>
+				<?php $sql = $dbh->prepare('SELECT * FROM `stock` ');
+                          $sql->execute();
+                        while ($row = $sql->fetch()) {
+                            ?>
+					    <option value="<?php echo $row['id']; ?>"><?php  echo $row['ingredient_name']; ?></option>
+					    <?php
+                        }?>
 					    </select>
 				<input type="text"  class="ingredient" name="quantity_1" size="16"/>
 				<span class="small">g/ml</span></label>
 
 				<select id="id_2" name="item_2" >
-				<?php $sql = $dbh->prepare("SELECT * FROM `stock` ");
-					      $sql->execute();
-					    while($row= $sql->fetch()){
-				?>
-					    <option value="<?php echo $row['id'];?>"><?php  echo $row ['ingredient_name'];?></option>
-					    <?php }?>
+				<?php $sql = $dbh->prepare('SELECT * FROM `stock` ');
+                          $sql->execute();
+                        while ($row = $sql->fetch()) {
+                            ?>
+					    <option value="<?php echo $row['id']; ?>"><?php  echo $row['ingredient_name']; ?></option>
+					    <?php
+                        }?>
 				</select>
 				<input type="text"  class="ingredient" name="quantity_2" size="16"/>
 				<span class="small">g/ml</span>
 
 				<select id="id_3" name="item_3" >
-				<?php $sql = $dbh->prepare("SELECT * FROM `stock` ");
-					      $sql->execute();
-					    while($row= $sql->fetch()){
-				?>
-					    <option value="<?php echo $row['id'];?>"><?php  echo $row ['ingredient_name'];?></option>
-					    <?php }?>
+				<?php $sql = $dbh->prepare('SELECT * FROM `stock` ');
+                          $sql->execute();
+                        while ($row = $sql->fetch()) {
+                            ?>
+					    <option value="<?php echo $row['id']; ?>"><?php  echo $row['ingredient_name']; ?></option>
+					    <?php
+                        }?>
 					    </select>
 				<input type="text" class="ingredient" name="quantity_3" size="16"/>
 				<span class="small">g/ml</span>
 
 				<select id="id_4" name="item_4" >
-				<?php $sql = $dbh->prepare("SELECT * FROM `stock` ");
-					      $sql->execute();
-					    while($row= $sql->fetch()){
-				?>
-					    <option value="<?php echo $row['id'];?>"><?php  echo $row ['ingredient_name'];?></option>
-					    <?php }?>
+				<?php $sql = $dbh->prepare('SELECT * FROM `stock` ');
+                          $sql->execute();
+                        while ($row = $sql->fetch()) {
+                            ?>
+					    <option value="<?php echo $row['id']; ?>"><?php  echo $row['ingredient_name']; ?></option>
+					    <?php
+                        }?>
 					    </select>
 				<input type="text" class="ingredient" name="quantity_4" size="16"/>
 				<span class="small">g/ml</span>
@@ -127,5 +134,10 @@
 	    </div>
 <!----  sidebar div Ends here  ----->
 <!------ content area sends here  ----->
-<?php include("includes/staff_sidebar.php"); ?>
-<?php include("includes/footer.php"); ?>
+ <?php  if ($_SESSION['status'] == 1 || $_SESSION['status'] == 2) {
+                            include 'includes/staff_sidebar.php';
+                        } else {
+                            include 'includes/sidebar.php';
+                        }
+        ?>       
+	<?php include 'includes/footer.php'; ?>

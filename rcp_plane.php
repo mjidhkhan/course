@@ -255,5 +255,10 @@ if (isset($_POST['submit'])) {
 	    </div>
 <!----  sidebar div Ends here  ----->
 <!------ content area sends here  ----->
-<?php include 'includes/staff_sidebar.php'; ?>
-<?php include 'includes/footer.php'; ?>
+ <?php  if ($_SESSION['status'] == 1 || $_SESSION['status'] == 2) {
+                    include 'includes/staff_sidebar.php';
+                } else {
+                    include 'includes/sidebar.php';
+                }
+        ?>       
+	<?php include 'includes/footer.php'; ?>

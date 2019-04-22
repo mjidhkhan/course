@@ -1,0 +1,118 @@
+<?php require_once 'includes/session.php'; ?>
+<?php require_once 'includes/connection.php'; ?>
+<?php require_once 'includes/functions.php'; ?>
+
+<?php
+$order_id = $_GET['order_id'];
+$customer_id = $_GET['cust_id'];
+
+$query = $dbh->prepare('SELECT DISTINCT users.fullname,users.email, 
+orders.id, orders.booking_date,
+order_details.course_id,
+order_details.course_name, 
+order_details.servings, 
+order_details.order_status,
+meal_type.meal_type, course_type.course_type 
+FROM users
+INNER JOIN orders 
+ON orders.customer_id = users.id
+INNER JOIN order_details 
+ON order_details.order_id = orders.id
+INNER JOIN meal_type 
+ON order_details.meal_type = meal_type.id
+INNER JOIN course_type 
+ON order_details.course_type = course_type.id
+WHERE orders.id=:order_id
+AND orders.customer_id=:customer_id');
+$query->execute(array(':order_id' => $order_id, ':customer_id' => $customer_id));
+$order_details = $query->fetchAll();
+
+//echo '<pre>'.var_export($order_details, true).'</pre>';
+
+foreach ($order_details as $key => $value) {
+    $status = $value['order_status'];
+    if ($status == 0) {
+        $pending = 'Pending';
+    } else {
+        $pending = 'Done';
+    }
+
+    $email = $value['email'];
+    $booking_date = $value['booking_date'];
+    $customer = $value['fullname'];
+}
+
+?>
+
+<?php include 'includes/header.php'; ?>
+	<!------ content area stats here            ----->
+<div id="content-head">
+		<?php  if (logged_in()) {
+    ?>
+		<h3> Welcome,  <?php echo strtoupper($_SESSION['fullname']);
+}?> </h3>
+	</div>
+	<div id="content"> 
+    <div class=" row">
+    <div class="column left">
+    <table class="table">
+    
+		<tr>
+           <td class="bg-default bottom-line right-line order">Customer </td><td class=" bottom-line right-line gray small "><?php echo $customer; ?></td>
+        <tr>
+           <td class="bg-default bottom-line right-line order">contact</td>
+           <td  class=" bottom-line right-line gray "><?php echo $email; ?></td>
+        </tr>
+    </table>
+
+        </div>
+        <div class="column right">
+    <table class="table">
+    <tr>
+           <td class="bg-default order bottom-line right-line order">Reservation Date</td><td class="bottom-line right-line  gray small"><?php echo $booking_date; ?></td>
+        
+        </tr>
+		<tr>
+           <td class="bg-default bottom bottom-line right-line order">Order Status </td><td class=" bottom-line right-line pending medium "><?php echo $pending; ?></td>
+</tr>
+    </table>
+        </div>
+   
+    </div>
+    <br>
+        <br>
+        <table>
+		<tr>
+		   <th>Course Name</th>
+		   <th>Meal Type</th>
+		   <th>Course Type</th>
+		   <th class=" booking medium">Servings</th>
+		   <th>Stock Status</th>
+		   
+		
+        </tr>
+        <?php 
+        foreach ($order_details as $key => $value) {
+            ?>
+            <tr>
+            <td class=" bottom-line right-line  small"><?php echo $value['course_name']; ?></td>
+		<td class=" bottom-line right-line  gray small"><?php echo $value['meal_type']; ?></td>
+		<td class=" gray bottom-line right-line  small "><?php echo $value['course_type']; ?></td>
+		<td class=" error bottom-line right-line  medium "><?php echo $value['servings']; ?></td>
+		<td class=" error bottom-line right-line  medium booking"><?php echo $value['servings']; ?></td>
+        </tr>
+        <?php
+        }
+        ?>
+
+        </table> 
+</div>
+
+
+<?php  if ($_SESSION['status'] == 1 || $_SESSION['status'] == 2) {
+            include 'includes/staff_sidebar.php';
+        } else {
+            include 'includes/sidebar.php';
+        }
+        ?>
+	<?php include 'includes/footer.php'; ?>
