@@ -86,20 +86,56 @@ foreach ($order_details as $key => $value) {
 		   <th>Course Name</th>
 		   <th>Meal Type</th>
 		   <th>Course Type</th>
-		   <th class=" booking medium">Servings</th>
+		   <th class=" booking0 medium0">Servings</th>
 		   <th>Stock Status</th>
 		   
 		
         </tr>
         <?php 
         foreach ($order_details as $key => $value) {
+            $course_id = $value['course_id'];
+            $servings = $value['servings'];
+            $query = $dbh->prepare('SELECT item_id, qty_used,stock.quantity
+            FROM recipes 
+            JOIN stock
+            ON stock.id = recipes.item_id
+            WHERE course_id =:course_id');
+
+            $query->execute(array(':course_id' => $course_id));
+            $stock_details = $query->fetchAll();
+            //print_r($stock_details);
+
             ?>
-            <tr>
-            <td class=" bottom-line right-line  small"><?php echo $value['course_name']; ?></td>
+        <tr>
+        <td class=" bottom-line right-line  small"><?php echo $value['course_name']; ?></td>
 		<td class=" bottom-line right-line  gray small"><?php echo $value['meal_type']; ?></td>
 		<td class=" gray bottom-line right-line  small "><?php echo $value['course_type']; ?></td>
 		<td class=" error bottom-line right-line  medium "><?php echo $value['servings']; ?></td>
-		<td class=" error bottom-line right-line  medium booking"><?php echo $value['servings']; ?></td>
+        <?php 
+         $result = '';
+         foreach ($stock_details as $key => $value) {
+             $stock_quantity = $value['quantity'];
+             $stock_used = $servings * $value['qty_used'];
+             $status = $stock_quantity - $stock_used;
+             if($status<250){
+                 $result = 'LOW';
+                 $res[] ='LOW' ;
+                
+             }else{
+                $result = 'OK';
+                $res[] ='OK' ;
+             }
+
+         }
+        // echo '<pre>'. var_export($res, true).'</pre>';// print_r($res);
+            
+            
+         if( in_array('LOW', $res)){
+        ?>
+		<td class="low-stock bottom-line right-line  medium "><?php echo 'LOW'; ?></td>
+         <?php }else{ ?>
+            <td class=" ok-stock bottom-line right-line  medium "><?php echo 'OK'; ?></td>
+         <?php }   $res=null;?>
         </tr>
         <?php
         }

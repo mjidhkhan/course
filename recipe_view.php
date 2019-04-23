@@ -6,21 +6,14 @@
 $course_id = $_GET['course_id'];
         /*this query will show Ingredients used in Recipe with Quantity used
                          and Remaining quantity in Stock after Updating  Quantaties*/
-        $query = $dbh->prepare('SELECT DISTINCT course_name,course_image, course_notes,course_instructions, ingredient_name,qty_used,units
+        $query = $dbh->prepare('SELECT  course_name,course_image, course_notes,course_instructions, ingredient_name,qty_used,units
 			FROM course_details
-			LEFT JOIN recipes
+			JOIN recipes
 			ON course_details.course_id = recipes.course_id
-			LEFT JOIN stock
+			JOIN stock
 			ON recipes.item_id = stock.id
 			WHERE course_details.course_id = :course_id');
         $query->execute(array(':course_id' => $course_id));
-
-            $sql = $dbh->prepare('SELECT *
-				FROM meal_course
-				WHERE id = :course_id');
-                $sql->execute(array(':course_id' => $course_id));
-                //$result_1= $sql->fetch();
-                //$row_2= $sql->fetch();
             $result = $query->fetch();
 
 ?>
