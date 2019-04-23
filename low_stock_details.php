@@ -12,38 +12,7 @@
     ?>
         <h3> Welcome to Staff area,  <?php echo strtoupper($_SESSION['username']);
 }?> </h3><hr>
-        <?php //this query will show if ingredients quantatiy is low we set the standar of 250 g/ml
-
        
-
-        $sql = $dbh->prepare('SELECT * FROM stock WHERE quantity <= reorder_level');
-        $sql->execute();
-        $result = $sql->fetchAll() ;
-                if (sizeof($result) != 0) {
-                    ?>
-                    <h3>Some of Ingredients has Low Quantity in stock </h3>
-                <table class="table">
-                    <tr>
-                        <th>Ingredient</th>
-                        <th>Qyantity</th>
-                        <th>Update</th>
-                    </tr>
-            <?php
-                }?>
-            <?php  foreach ($result as $key => $value) {
-                # code...
-            
-                    ?>
-                    <tr>
-                        <td class="bottom-line right-line  small low"><?php echo $value['ingredient_name']; ?></td>
-                        <td class="bottom-line right-line  small low"><?php echo $value['quantity']; ?></td>
-                        <td  class="bottom-line right-line  small"><a class="error" href="manage_stock.php?id=<?php echo $row['id']; ?>"> Update</a> </td>
-                    </tr>
-            <?php
-                }?>
-                </table> 
-                <br><br>
-
 
 <!--- Required For Specific Course Start -->
 
@@ -69,23 +38,19 @@ $course_details = $query->fetchAll();
 
 <div class="content">
   
-<h3>Required Stock fo : <?php echo $course_details[0]['course_name'];?> </h3>
+<h3 class="page-heading">Required Stock fo : <span ><?php echo $course_details[0]['course_name'];?> </span></h3>
    
-  <table class="table">
-                  <tr>
-                  <td class=" bottom-line right-line   medium bg-default"> Course Name</td>
-                  <td class=" bottom-line right-line  medium bg-default "><?php echo $course_details[0]['course_name'];?></td>
+  <table class="">
+  <tr>
+                  <td class="  gray bg-default">  Meal Type : <span class="success medium"><?php echo $course_details[0]['meal_type'];?></span></td>
                  
-                  <tr>
-                  <td class=" bottom-line right-line medium bg-default">  Meal Type</td>
-                  <td  class=" bottom-line right-line  medium bg-default"><?php echo $course_details[0]['meal_type'];?></td>
                   </tr>
                   <tr>
-                  <td class=" bottom-line right-line medium bg-default">  Course Type</td>
-                  <td  class=" bottom-line right-line  medium bg-default"><?php echo $course_details[0]['course_type'];?></td>
+                  <td class="  bg-default gray">  Course Type : <span class="success medium"><?php echo $course_details[0]['course_type'];?></span></td>
+
                   <tr>
-                  <td class=" bottom-line right-line medium bg-default"> Required Servings</td>
-                  <td  class=" bottom-line right-line  medium bg-default"><?php echo $course_details[0]['servings'];?></td>
+                  <td class="  bg-default gray"> Required Servings : <span class="success medium"><?php echo $course_details[0]['servings'];?></span></td>
+                  
                   </tr>
                   </tr>
               </table>
