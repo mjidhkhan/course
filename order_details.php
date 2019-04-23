@@ -65,6 +65,10 @@ foreach ($order_details as $key => $value) {
                     <td class=" bottom-line right-line order medium success"> <i class="fa fa-check-square-o" aria-hidden="true"></i></td>
                     <td  class=" bottom-line right-line gray success">Sufficient Stock Level with respect to number of servings required.</td>
                     </tr>
+                    <tr>
+                    <td class=" bottom-line right-line order medium warning"> <i class="fa fa-exclamation-triangle" aria-hidden="true"></i></td>
+                    <td  class=" bottom-line right-line gray warning">Critical Stock Level with respect to number of servings required.</td>
+                    </tr>
                 </table>
                 <br>
               
@@ -131,20 +135,25 @@ foreach ($order_details as $key => $value) {
               $status = $stock_quantity -  $stock_used;
              if($status<0){
                  $res[] ='LOW' ;
-             }elseif($status<250 && $status>0){
+             }elseif($status<250 && $status>=0){
                 $res[] ='CRT' ;
              }else{
                 $res[] ='OK' ;
              }
          }
         // echo '<pre>'. var_export($res, true).'</pre>';// print_r($res);
-            
-            
-         if( in_array('LOW', $res)){
+        
+        $level = array_count_values($res);
+        
+           
+       
+         // echo '<pre>'. var_export($a, true).'</pre>';// print_r($res);
+        
+        if( array_key_exists('LOW', $level)){
         ?>
 		<td class="low-stock bottom-line right-line  medium "><a href="low_stock_details.php?cid=<?php echo $course_id; ?>&ser=<?php echo $servings; ?>" class="low-stock"> <i class="fa fa-arrow-down" aria-hidden="true"></i></a></td>
-         <?php }else if( in_array('CRT', $res) && in_array('LOW', $res)  ){ ?>
-            <td class=" ok-stock bottom-line right-line  medium "><a href="low_stock_details.php?cid=<?php echo $course_id; ?>&ser=<?php echo $servings; ?>" class="low-stock"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i></a></td>
+         <?php }else if( array_key_exists('CRT', $level)){ ?>
+            <td class=" ok-stock bottom-line right-line  medium "><a href="low_stock_details.php?cid=<?php echo $course_id; ?>&ser=<?php echo $servings; ?>" class="warning-stock"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i></a></td>
          <?php } else{ ?>
             <td class=" ok-stock bottom-line right-line  medium "><a href="low_stock_details.php?cid=<?php echo $course_id; ?>&ser=<?php echo $servings; ?>" class="ok-stock"><i class="fa fa-check-square-o" aria-hidden="true"></i></a></td>
             <?php } $res=null ?>
