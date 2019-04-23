@@ -25,7 +25,7 @@
                                 <?php if ($_SESSION['status'] == 1) {
         ?>
                                 <li><a href="new_staff.php">New Staff</a></li>
-                                <li><a href="new_staff.php">Fire Staff</a></li>
+                               
                                 <?php
     } ?>
                             </ul>
@@ -38,6 +38,20 @@
                                     <li><a href="index_staff.php"> All Recipe </a></li>
                                     <li><a href="new_dish.php"> New Recipe </a></li>
                                     <li><a href="view_orders.php">View orders</a></li>
+                                   
+                                <?php
+    } ?>
+                            </ul>
+                        </li>
+                        
+                        <li class="second">
+                            <p class="sidebar-title">Stock area</p>
+                            <ul>
+                                <?php if ($_SESSION['status'] == 1 || $_SESSION['status'] == 2) {
+        ?>
+                                    <li><a href="new_item.php"> New Item </a></li>
+                                   
+                                    <li><a href="view_orders.php">Remove Item</a></li>
                                     <li><a href="rcp_plane.php">Stock check</a></li>
                                 <?php
     } ?>
