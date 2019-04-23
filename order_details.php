@@ -51,7 +51,25 @@ foreach ($order_details as $key => $value) {
     ?>
 		<h3> Welcome,  <?php echo strtoupper($_SESSION['fullname']);
 }?> </h3>
-	</div>
+    </div>
+    <br>
+                <br>
+    <div class="content">
+  
+   
+    <table class="table">
+                    <tr>
+                    <td class=" bottom-line right-line order error medium">  <i class="fa fa-arrow-down" aria-hidden="true"></i> </td>
+                    <td class=" bottom-line right-line gray small error ">Low Stock Level with respect to number of servings required.</td>
+                    <tr>
+                    <td class=" bottom-line right-line order medium success"> <i class="fa fa-check-square-o" aria-hidden="true"></i></td>
+                    <td  class=" bottom-line right-line gray success">Sufficient Stock Level with respect to number of servings required.</td>
+                    </tr>
+                </table>
+                <br>
+              
+    </div>
+<hr>
 	<div id="content"> 
         <div class=" row">
             <div class="column left">
@@ -122,9 +140,9 @@ foreach ($order_details as $key => $value) {
             
          if( in_array('LOW', $res)){
         ?>
-		<td class="low-stock bottom-line right-line  medium "><?php echo 'LOW'; ?></td>
+		<td class="low-stock bottom-line right-line  medium "><a href="/" class="low-stock"> <i class="fa fa-arrow-down" aria-hidden="true"></i></a></td>
          <?php }else{ ?>
-            <td class=" ok-stock bottom-line right-line  medium "><?php echo 'OK'; ?></td>
+            <td class=" ok-stock bottom-line right-line  medium "><i class="fa fa-check-square-o" aria-hidden="true"></i></td>
          <?php }   $res=null;?>
         </tr>
         <?php

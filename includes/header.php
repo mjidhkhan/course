@@ -2,6 +2,7 @@
 <html lang="en">
 	<head>
                 <title>menu Planning</title>
+                <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css" type="text/css" media="screen" charset="utf-8"/>
 		<link href="stylesheets/styles.css" media="all" rel="stylesheet" type="text/css" />
 		<link href="stylesheets/form.css" media="all" rel="stylesheet" type="text/css" />
                 <link rel="stylesheet" href="stylesheets/css/ui-lightness/jquery-ui-1.7.2.custom.css" type="text/css" media="screen" charset="utf-8"/>
