@@ -22,12 +22,13 @@ $allOrders = $query->fetchAll();
 		<h3> Welcome,  <?php echo strtoupper($_SESSION['fullname']);
 }?> </h3>
 	</div>
-	<div id="content">   
+	<div id="content"> 
+		<h3 class="page-heading">View All Orders</h3>  
 	    <table>
 		<tr>
 		   <th>Customer</th>
 		   <th>Order Date</th>
-		   <th class=" booking medium">Booking Date</th>
+		   <th class=" booking small">Booking Date</th>
 		   <th class="">View</th>
 		   
 		

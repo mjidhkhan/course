@@ -1027,8 +1027,8 @@ td>select {
 
 .booking {
     font-family: 'Lato', sans-serif;
-    background-color: #3F51B5;
-    border: 1px silod#3F51B5 !important;
+    background-color: #1c5d87;
+    border: 1px silod #1c5d87 !important;
     color: #FFF;
 }
 
@@ -1066,6 +1066,35 @@ td>select {
     /* background-color: rgba(170, 221, 180, 0.74);*/
     color: rgb(6, 158, 6);
     background-color: rgba(238, 238, 238, 0.514);
+}
+
+.warning-stock {
+    font-family: 'Lato', sans-serif;
+    color: rgb(250, 153, 7);
+    background-color: rgba(238, 238, 238, 0.514);
+}
+
+.warning {
+    font-family: 'Lato', sans-serif;
+    color: rgb(250, 153, 7);
+}
+
+.bold {
+    font-weight: 600;
+}
+
+.icon-color-update {
+    color: rgb(8, 152, 248);
+    font-weight: 1.2rem
+}
+
+.icon-color-view {
+    color: rgb(18, 128, 8);
+    font-weight: 1.2rem
+}
+
+.btn-right {
+    float: right;
 }
 
 

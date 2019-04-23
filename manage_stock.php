@@ -31,33 +31,69 @@ $sql->execute(array(':ing_1'=>$ing_1));
 		$stock_qty= $row ['quantity'];}
 ?>
 <?php include("includes/header.php"); ?>
-<h3> Welcome , <?php echo $_SESSION['username'];?> </h3><p>
+<h3> Welcome , <?php echo $_SESSION['fullname'];?> </h3><p>
 <!------ content area stats here----->
 <form action="manage_stock.php" method="post" id="add_course">
-                <div><h3> Update Stock  for <?php echo $item_name;?></h3></div>
+                <div><h3 class="page-heading"> Update Stock  for <?php echo $item_name;?></h3></div>
                 <div class="small_inst"> New quantity will be Add to Old quantity.</div>
 		<div class="small_inst"> Quantity must be in grams/litters.</div>
 		<div class="small_inst"> Units: 1kg = 1000 grams & 1 liter = 1000 ml.</p></div>
-                <div >
-                <fieldset><div>
-                    <legend>Ingredient: <?php echo $item_name;?></legend>
-		    <input type="hidden"  class="ingredient readonly" value=" <?php echo $ing_1;?>"readonly='readonly' name="ing_1" size="16"/>
-		    <label class="readonly"> InStock Qyantity</label>
-                    <input type="text"  class="ingredient readonly" value=" <?php echo $stock_qty;?>"readonly='readonly' name="quantity_1" size="16"/>
-                    <span class="small">g/ml</span></label>
-		    <label>Enter new Quantity</label>
-                    <input type="text" class="ingredient" name="quantity_2" size="16"/>
-                    <span class="small">g/ml</span>
-                </fieldset></div>
-		<div class=" actions button">
-		<input type="submit" class="searchsubmit formbutton" name="submit" value="Update" />
+        <div class="contents" >
+            <table>
+			<input type="hidden"  class="ingredient readonly" value=" <?php echo $ing_1;?>"readonly='readonly' name="ing_1" size="16"/>
+
+			<tr>
+				<td>
+				<label class="readonly"> InStock Qyantity</label>
+				</td>
+				<td>
+				<input type="text"  class="ingredient readonly" value=" <?php echo $stock_qty;?>"readonly='readonly' name="quantity_1" size="16"/>
+				<span class="small">g/ml</span>
+				</td>
+			</tr>
+			<tr>
+				<td>
+				<label>Enter new Quantity</label>
+				</td>
+				<td>
+				<input type="text" class="ingredient" name="quantity_2" size="16"/>
+				<span class="small">g/ml</span>
+				</td>
+			</tr>
+			<tr>
+			<div class=" actions button">
+				<td>
+				<input type="submit" class="searchsubmit formbutton btn-right" name="submit" value="Update" />
+				</td>
+				<td>
+				
+		
 		<input type="reset" class="searchsubmit formbutton" name="reset" value="Reset" />
-		</div>
+		
+				</td>
+				</div>
+			</tr>
+			</table>    
+		    
+		    
+                  
+                   
+		   
+                   
+                    
+               </div>
+		
 </form>
 <div>
 <!-- donot remove this div it start from sidebar --->
 	    </div>
 <!----  sidebar div Ends here  ----->
-<!------ content area sends here  ----->
-<?php include("includes/sidebar.php"); ?>
-<?php include("includes/footer.php"); ?>
+
+<!-- content area sends here            ----->
+<?php  if ($_SESSION['status'] == 1 || $_SESSION['status'] == 2) {
+            include 'includes/staff_sidebar.php';
+        } else {
+            include 'includes/sidebar.php';
+        }
+        ?>
+	<?php include 'includes/footer.php'; ?>

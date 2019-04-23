@@ -31,7 +31,7 @@
                     <tr>
                         <td class="bottom-line right-line  small low"><?php echo $value['ingredient_name']; ?></td>
                         <td class="bottom-line right-line  small low"><?php echo $value['quantity']; ?></td>
-                        <td  class="bottom-line right-line  small"><a class="error" href="manage_stock.php?id=<?php echo $row['id']; ?>"> Update</a> </td>
+                        <td  class="bottom-line right-line  small"><a class="error" href="manage_stock.php?id=<?php echo $value['id']; ?>"> Update</a> </td>
                     </tr>
             <?php
                 }?>
@@ -69,13 +69,13 @@
             $sql->execute(array(':id' => $result['meal_type']));
             $result_meal = $sql->fetch(); ?>
 
-                    <td  class=" bottom-line right-line  small"><?php echo $value['course_name']; ?></td>
+                    <td  class=" bottom-line right-line   bold"><?php echo $value['course_name']; ?></td>
                    
-                  <td  class=" bottom-line right-line  small"><?php echo $result_course['course_type']; ?></td>
-                  <td  class=" bottom-line right-line  small"><?php echo $value['course_prep_date']; ?></td>
-                  <td  class=" bottom-line right-line  small"><?php echo $result_meal['meal_type']; ?></td>
-                    <td  class=" bottom-line right-line  small"><a href="update_course.php?course_id=<?php echo $value['course_id']; ?>"> Update</a> </td>
-                    <td  class=" bottom-line right-line  small"><a href="recipe_view.php?course_id=<?php echo $value['course_id']; ?>"> View</a> </td>
+                  <td  class=" bottom-line right-line  "><?php echo $result_course['course_type']; ?></td>
+                  <td  class=" bottom-line right-line  "><?php echo $value['course_prep_date']; ?></td>
+                  <td  class=" bottom-line right-line  "><?php echo $result_meal['meal_type']; ?></td>
+                    <td  class=" bottom-line right-line  "><a href="update_course.php?course_id=<?php echo $value['course_id']; ?>"><i class="fa fa-edit icon-color-update"></i> </a> </td>
+                    <td  class=" bottom-line right-line  "><a href="recipe_view.php?course_id=<?php echo $value['course_id']; ?>"> <i class="fa fa-eye icon-color-update"></i></a> </td>
 
                 </tr>
                 <?php

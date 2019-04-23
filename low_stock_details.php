@@ -38,7 +38,7 @@ $course_details = $query->fetchAll();
 
 <div class="content">
   
-<h3 class="page-heading">Required Stock fo : <span ><?php echo $course_details[0]['course_name'];?> </span></h3>
+<h3 class="page-heading">Required Stock for : <span ><?php echo $course_details[0]['course_name'];?> </span></h3>
    
   <table class="">
   <tr>
@@ -57,6 +57,25 @@ $course_details = $query->fetchAll();
               <br>
             
   </div>
+  <div class="content">
+  
+   
+    <table class="table">
+                    <tr>
+                    <td class=" bottom-line right-line order error medium">  <i class="fa fa-arrow-down" aria-hidden="true"></i> </td>
+                    <td class=" bottom-line right-line gray small error ">Low Stock Level with respect to number of servings required.</td>
+                    <tr>
+                    <td class=" bottom-line right-line order medium success"> <i class="fa fa-check-square-o" aria-hidden="true"></i></td>
+                    <td  class=" bottom-line right-line gray success">Sufficient Stock Level with respect to number of servings required.</td>
+                    </tr>
+                    <tr>
+                    <td class=" bottom-line right-line order medium warning"> <i class="fa fa-exclamation-triangle" aria-hidden="true"></i></td>
+                    <td  class=" bottom-line right-line gray warning">Critical Stock Level with respect to number of servings required.</td>
+                    </tr>
+                </table>
+                <br>
+              
+    </div>
  <br>
         <table>
 		<tr>
@@ -83,26 +102,19 @@ $course_details = $query->fetchAll();
             foreach ($stock_details as $key => $value) {
                 $stock_quantity = $value['quantity'];
                 $stock_required = $servings * $value['qty_used'];
-                $status =$stock_required - $stock_quantity;
+                $status = $stock_quantity - $stock_required;
             ?>
         <tr>
         <td class=" bottom-line right-line  small"><?php echo $value['ingredient_name']; ?></td>
-		<td class=" bottom-line right-line  gray small"><?php echo $stock_quantity .''.$value['units'];?></td>
-		<td class=" gray bottom-line right-line  small "><?php echo $stock_required.''.$value['units']; ?></td>
+		<td class=" bottom-line right-line  gray small"><?php echo $stock_required .''.$value['units'];?></td>
+		<td class=" gray bottom-line right-line  small "><?php echo $stock_quantity.''.$value['units']; ?></td>
 		
         <?php 
-             if($status<0){
-                 $res='LOW' ;
-            
-              
-             
-         
-        // echo '<pre>'. var_export($res, true).'</pre>';// print_r($res);
-            
-            
-        
+             if($status <0 ){ $res='LOW' ;
         ?>
-		<td class="low-stock bottom-line right-line  medium "><a href="low_stock_details.php?cid=<?php echo $course_id; ?>&ser=<?php echo $servings; ?>" class="low-stock"> <i class="fa fa-arrow-down" aria-hidden="true"></i></a></td>
+        <td class="low-stock bottom-line right-line  medium "><a href="manage_stock.php?id=<?php echo $value['item_id']; ?>" class="low-stock"> <i class="fa fa-arrow-down" aria-hidden="true"></i></a></td>
+        <?php }else if($status<250 && $status>=0){ $res='CRT' ;?>
+        <td class="warning-stock bottom-line right-line  medium  "><a href="manage_stock.php?id=<?php echo $value['item_id'];?>" class="warning-stock"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i></a></td>
          <?php }else{   $res='OK' ;?>
             <td class=" ok-stock bottom-line right-line  medium "><i class="fa fa-check-square-o" aria-hidden="true"></i></td>
          <?php } }  ?>
@@ -112,39 +124,6 @@ $course_details = $query->fetchAll();
         ?>
 
         </table> 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 <!--- Required For Specific Course End -->

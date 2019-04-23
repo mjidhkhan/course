@@ -128,9 +128,11 @@ foreach ($order_details as $key => $value) {
          foreach ($stock_details as $key => $value) {
              $stock_quantity = $value['quantity'];
              $stock_used = $servings * $value['qty_used'];
-             $status = $stock_used - $stock_quantity;
-             if($status<250){
+              $status = $stock_quantity -  $stock_used;
+             if($status<0){
                  $res[] ='LOW' ;
+             }elseif($status<250 && $status>0){
+                $res[] ='CRT' ;
              }else{
                 $res[] ='OK' ;
              }
@@ -141,9 +143,11 @@ foreach ($order_details as $key => $value) {
          if( in_array('LOW', $res)){
         ?>
 		<td class="low-stock bottom-line right-line  medium "><a href="low_stock_details.php?cid=<?php echo $course_id; ?>&ser=<?php echo $servings; ?>" class="low-stock"> <i class="fa fa-arrow-down" aria-hidden="true"></i></a></td>
-         <?php }else{ ?>
+         <?php }else if( in_array('CRT', $res) && in_array('LOW', $res)  ){ ?>
+            <td class=" ok-stock bottom-line right-line  medium "><a href="low_stock_details.php?cid=<?php echo $course_id; ?>&ser=<?php echo $servings; ?>" class="low-stock"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i></a></td>
+         <?php } else{ ?>
             <td class=" ok-stock bottom-line right-line  medium "><i class="fa fa-check-square-o" aria-hidden="true"></i></td>
-         <?php }   $res=null;?>
+            <?php } $res=null ?>
         </tr>
         <?php
         }
