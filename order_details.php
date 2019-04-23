@@ -146,7 +146,7 @@ foreach ($order_details as $key => $value) {
          <?php }else if( in_array('CRT', $res) && in_array('LOW', $res)  ){ ?>
             <td class=" ok-stock bottom-line right-line  medium "><a href="low_stock_details.php?cid=<?php echo $course_id; ?>&ser=<?php echo $servings; ?>" class="low-stock"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i></a></td>
          <?php } else{ ?>
-            <td class=" ok-stock bottom-line right-line  medium "><i class="fa fa-check-square-o" aria-hidden="true"></i></td>
+            <td class=" ok-stock bottom-line right-line  medium "><a href="low_stock_details.php?cid=<?php echo $course_id; ?>&ser=<?php echo $servings; ?>" class="ok-stock"><i class="fa fa-check-square-o" aria-hidden="true"></i></a></td>
             <?php } $res=null ?>
         </tr>
         <?php

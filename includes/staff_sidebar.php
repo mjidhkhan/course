@@ -50,8 +50,7 @@
                                 <?php if ($_SESSION['status'] == 1 || $_SESSION['status'] == 2) {
         ?>
                                     <li><a href="new_item.php"> New Item </a></li>
-                                   
-                                    <li><a href="view_orders.php">Remove Item</a></li>
+                        
                                     <li><a href="rcp_plane.php">Stock check</a></li>
                                 <?php
     } ?>
