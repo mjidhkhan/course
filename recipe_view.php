@@ -6,15 +6,27 @@
 $course_id = $_GET['course_id'];
         /*this query will show Ingredients used in Recipe with Quantity used
                          and Remaining quantity in Stock after Updating  Quantaties*/
-        $query = $dbh->prepare('SELECT  course_name,course_image, course_notes,course_instructions, ingredient_name,qty_used,units
-			FROM course_details
-			JOIN recipes
-			ON course_details.course_id = recipes.course_id
-			JOIN stock
-			ON recipes.item_id = stock.id
-			WHERE course_details.course_id = :course_id');
-        $query->execute(array(':course_id' => $course_id));
-            $result = $query->fetch();
+    
+		$query = $dbh->prepare('SELECT  course_name,course_image, course_notes,course_instructions, ingredient_name,qty_used,units
+		FROM course_details
+		JOIN recipes
+		ON course_details.course_id = recipes.course_id
+		JOIN stock
+		ON recipes.item_id = stock.id
+		WHERE course_details.course_id = :course_id');
+	$query->execute(array(':course_id' => $course_id));
+	$result = $query->fetch();
+
+
+$sql = $dbh->prepare('SELECT  recipes.item_id, stock.ingredient_name,recipes.qty_used,stock.units
+FROM stock
+JOIN recipes
+ON recipes.item_id = stock.id
+WHERE recipes.course_id = :course_id');
+$sql->execute(array(':course_id' => $course_id));
+
+
+
 
 ?>
 <?php include 'includes/header.php'; ?>
@@ -33,8 +45,8 @@ $course_id = $_GET['course_id'];
 						<table>
 					  	<tr>
                             <th>Ingredients</th>
-                            <?php while ($row_2 = $query->fetch()) {
-    //echo '<pre>'. var_export($row_2, true).'</pre>';?>
+                            <?php while ($row_2 = $sql->fetch()) {
+    //echo '<pre>'. var_export($result, true).'</pre>';?>
                             <td>
 									<?php echo $row_2['ingredient_name']; ?>
 									<?php echo $row_2['qty_used']; ?>
