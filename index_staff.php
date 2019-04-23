@@ -10,10 +10,10 @@
         <h3> Welcome to Staff area,  <?php echo strtoupper($_SESSION['username']);
 }?> </h3><hr>
         <?php //this query will show if ingredients quantatiy is low we set the standar of 250 g/ml
-        $sql = $dbh->prepare('SELECT * FROM stock WHERE quantity <= reorder_level ');
-        //$result = mysql_query($sql);
-    $sql->execute();
-                if ($row = $sql->fetch() != 0) {
+        $sql = $dbh->prepare('SELECT * FROM stock WHERE quantity <= reorder_level');
+        $sql->execute();
+        $result = $sql->fetchAll() ;
+                if (sizeof($result) != 0) {
                     ?>
                     <h3>Some of Ingredients has Low Quantity in stock </h3>
                 <table class="table">
@@ -24,12 +24,14 @@
                     </tr>
             <?php
                 }?>
-            <?php  while ($row = $sql->fetch()) {
+            <?php  foreach ($result as $key => $value) {
+                # code...
+            
                     ?>
                     <tr>
-                        <td class="low"><?php echo $row['ingredient_name']; ?></td>
-                        <td class="low"><?php echo $row['quantity']; ?></td>
-                        <td><a href="manage_stock.php?id=<?php echo $row['id']; ?>"> Update</a> </td>
+                        <td class="bottom-line right-line  small low"><?php echo $value['ingredient_name']; ?></td>
+                        <td class="bottom-line right-line  small low"><?php echo $value['quantity']; ?></td>
+                        <td  class="bottom-line right-line  small"><a class="error" href="manage_stock.php?id=<?php echo $row['id']; ?>"> Update</a> </td>
                     </tr>
             <?php
                 }?>
@@ -67,13 +69,13 @@
             $sql->execute(array(':id' => $result['meal_type']));
             $result_meal = $sql->fetch(); ?>
 
-                    <td><?php echo $value['course_name']; ?></td>
+                    <td  class=" bottom-line right-line  small"><?php echo $value['course_name']; ?></td>
                    
-                  <td><?php echo $result_course['course_type']; ?></td>
-                  <td><?php echo $value['course_prep_date']; ?></td>
-                  <td><?php echo $result_meal['meal_type']; ?></td>
-                    <td><a href="update_course.php?course_id=<?php echo $value['course_id']; ?>"> Update</a> </td>
-                    <td><a href="recipe_view.php?course_id=<?php echo $value['course_id']; ?>"> View</a> </td>
+                  <td  class=" bottom-line right-line  small"><?php echo $result_course['course_type']; ?></td>
+                  <td  class=" bottom-line right-line  small"><?php echo $value['course_prep_date']; ?></td>
+                  <td  class=" bottom-line right-line  small"><?php echo $result_meal['meal_type']; ?></td>
+                    <td  class=" bottom-line right-line  small"><a href="update_course.php?course_id=<?php echo $value['course_id']; ?>"> Update</a> </td>
+                    <td  class=" bottom-line right-line  small"><a href="recipe_view.php?course_id=<?php echo $value['course_id']; ?>"> View</a> </td>
 
                 </tr>
                 <?php

@@ -35,6 +35,7 @@
                             <ul>
                                 <?php if ($_SESSION['status'] == 1 || $_SESSION['status'] == 2) {
         ?>
+                                    <li><a href="index_staff.php"> All Recipe </a></li>
                                     <li><a href="new_dish.php"> New Recipe </a></li>
                                     <li><a href="view_orders.php">View orders</a></li>
                                     <li><a href="rcp_plane.php">Stock check</a></li>

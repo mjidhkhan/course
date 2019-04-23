@@ -53,32 +53,28 @@ foreach ($order_details as $key => $value) {
 }?> </h3>
 	</div>
 	<div id="content"> 
-    <div class=" row">
-    <div class="column left">
-    <table class="table">
-    
-		<tr>
-           <td class="bg-default bottom-line right-line order">Customer </td><td class=" bottom-line right-line gray small "><?php echo $customer; ?></td>
-        <tr>
-           <td class="bg-default bottom-line right-line order">contact</td>
-           <td  class=" bottom-line right-line gray "><?php echo $email; ?></td>
-        </tr>
-    </table>
-
+        <div class=" row">
+            <div class="column left">
+                <table class="table">
+                    <tr>
+                    <td class="bg-default bottom-line right-line order">Customer </td><td class=" bottom-line right-line gray small "><?php echo $customer; ?></td>
+                    <tr>
+                    <td class="bg-default bottom-line right-line order">Contact</td>
+                    <td  class=" bottom-line right-line gray "><?php echo $email; ?></td>
+                    </tr>
+                </table>
+            </div>
+            <div class="column right">
+                <table class="table">
+                    <tr>
+                        <td class="bg-default order bottom-line right-line order">Reservation Date</td><td class="bottom-line right-line  gray small"><?php echo $booking_date; ?></td>
+                    </tr>
+                    <tr>
+                        <td class="bg-default bottom bottom-line right-line order">Order Status </td><td class=" bottom-line right-line pending medium "><?php echo $pending; ?></td>
+                    </tr>
+                </table>
+            </div>
         </div>
-        <div class="column right">
-    <table class="table">
-    <tr>
-           <td class="bg-default order bottom-line right-line order">Reservation Date</td><td class="bottom-line right-line  gray small"><?php echo $booking_date; ?></td>
-        
-        </tr>
-		<tr>
-           <td class="bg-default bottom bottom-line right-line order">Order Status </td><td class=" bottom-line right-line pending medium "><?php echo $pending; ?></td>
-</tr>
-    </table>
-        </div>
-   
-    </div>
     <br>
         <br>
         <table>
@@ -103,8 +99,6 @@ foreach ($order_details as $key => $value) {
 
             $query->execute(array(':course_id' => $course_id));
             $stock_details = $query->fetchAll();
-            //print_r($stock_details);
-
             ?>
         <tr>
         <td class=" bottom-line right-line  small"><?php echo $value['course_name']; ?></td>
@@ -118,14 +112,10 @@ foreach ($order_details as $key => $value) {
              $stock_used = $servings * $value['qty_used'];
              $status = $stock_quantity - $stock_used;
              if($status<250){
-                 $result = 'LOW';
                  $res[] ='LOW' ;
-                
              }else{
-                $result = 'OK';
                 $res[] ='OK' ;
              }
-
          }
         // echo '<pre>'. var_export($res, true).'</pre>';// print_r($res);
             
